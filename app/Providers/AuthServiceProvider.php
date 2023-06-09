@@ -4,6 +4,8 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Look\Auth\Domain\User\Contract\UserRepository;
+use Look\Auth\Infrastructure\Repository\EloquentUserRepository;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,11 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         //
     ];
+
+    public function register(): void
+    {
+        $this->app->bind(UserRepository::class, EloquentUserRepository::class);
+    }
 
     /**
      * Register any authentication / authorization services.
