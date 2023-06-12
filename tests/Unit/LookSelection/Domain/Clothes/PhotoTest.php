@@ -4,31 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\Unit\LookSelection\Domain\Clothes;
 
-use Look\Common\Exception\InvalidValueException;
-use Look\LookSelection\Domain\Clothes\Value\Photo;
-use Tests\TestCase;
+use Look\Common\Value\Photo\Contract\Photo;
+use \Tests\Unit\Common\Value\PhotoTest as CommonPhotoTest;
+use Look\LookSelection\Domain\Clothes\Value\Photo as PhotoEntity;
 
-class PhotoTest extends TestCase
+class PhotoTest extends CommonPhotoTest
 {
     protected string $stub = '/storage/stub.jpg';
 
-    public function testEmptyPhotoShouldReturnImageStub(): void
+    protected function makePhoto(string $value): Photo
     {
-        $photo = new Photo('');
-
-        $this->assertEquals($this->stub, $photo->getValue());
-    }
-
-    public function testPhotoShouldReturnImageUrl(): void
-    {
-        $photo = new Photo('/test/image.png');
-
-        $this->assertEquals('/test/image.png', $photo->getValue());
-    }
-
-    public function testPhotoImageExtension(): void
-    {
-        $this->expectException(InvalidValueException::class);
-        new Photo('/test/image');
+        return new PhotoEntity($value);
     }
 }

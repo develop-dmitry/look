@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\LookSelection\Domain\Event;
 
+use Look\Common\Value\Name\Name;
+use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Event\Entity\Event;
-use Look\LookSelection\Domain\Event\Value\Name;
-use Look\LookSelection\Domain\Event\Value\Slug;
 use Tests\TestCase;
 
 class EventTest extends TestCase

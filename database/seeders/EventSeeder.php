@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Seeder;
 
 class EventSeeder extends Seeder
@@ -13,10 +14,18 @@ class EventSeeder extends Seeder
      */
     public function run(): void
     {
-        Event::create(['name' => 'Отдых на природе', 'slug' => 'outdoor-recreation']);
-        Event::create(['name' => 'Свидание', 'slug' => 'meeting']);
-        Event::create(['name' => 'Прогулка по парку', 'slug' => 'walking-on-park']);
-        Event::create(['name' => 'На работа', 'slug' => 'work']);
-        Event::create(['name' => 'На учебу', 'slug' => 'study']);
+        $this->createEvent('Отдых на природе', 'outdoor-recreation');
+        $this->createEvent('Свидание', 'meeting');
+        $this->createEvent('Прогулка по парку', 'walking-on-park');
+        $this->createEvent('На работа', 'work');
+        $this->createEvent('На учебу', 'study');
+    }
+
+    public function createEvent(string $name, string $slug): void
+    {
+        try {
+            Event::create(['name' => $name, 'slug' => $slug]);
+        } catch (QueryException) {
+        }
     }
 }

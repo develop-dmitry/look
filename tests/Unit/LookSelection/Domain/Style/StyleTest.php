@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\LookSelection\Domain\Style;
 
+use Look\Common\Value\Name\Name;
+use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Style\Entity\Style;
-use Look\LookSelection\Domain\Style\Value\Name;
-use Look\LookSelection\Domain\Style\Value\Slug;
 use Tests\TestCase;
 
 class StyleTest extends TestCase

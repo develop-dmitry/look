@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Look\LookSelection\Domain\Event\Entity;
 
 use Look\LookSelection\Domain\Event\Contract\Event as EventContract;
-use Look\LookSelection\Domain\Event\Value\Name;
-use Look\LookSelection\Domain\Event\Value\Slug;
+use Look\Common\Value\Name\Contract\Name;
+use Look\Common\Value\Slug\Contract\Slug;
 
 class Event implements EventContract
 {
