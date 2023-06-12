@@ -7,6 +7,7 @@ namespace Look\LookSelection\Infrastructure\Repository;
 use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Id\Id;
 use Look\Common\Value\Id\NullId;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesRepository;
 use Look\LookSelection\Domain\Style\Contract\StyleRepository;
 use Look\LookSelection\Domain\User\Contract\UserRepository;
 use Look\LookSelection\Domain\User\Exception\UserNotFoundException;
@@ -18,6 +19,7 @@ class EloquentUserRepository implements UserRepository
 {
     public function __construct(
         protected StyleRepository $styleRepository,
+        protected ClothesRepository $clothesRepository,
         protected LoggerInterface $logger
     ) {
     }
@@ -49,7 +51,8 @@ class EloquentUserRepository implements UserRepository
     {
         return new User(
             ($model->exists()) ? new Id($model->id) : new NullId(),
-            $this->styleRepository->findById($model->styles()->pluck('id')->toArray())
+            $this->styleRepository->findById($model->styles()->pluck('id')->toArray()),
+            $this->clothesRepository->findById($model->clothes()->pluck('id')->toArray())
         );
     }
 }

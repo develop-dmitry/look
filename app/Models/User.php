@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->morphToMany(Style::class, 'model', 'model_has_styles');
     }
+
+    public function clothes(): MorphToMany
+    {
+        return $this->morphToMany(Clothes::class, 'model', 'model_has_clothes');
+    }
 }

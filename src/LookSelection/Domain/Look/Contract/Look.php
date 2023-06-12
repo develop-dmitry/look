@@ -6,10 +6,12 @@ namespace Look\LookSelection\Domain\Look\Contract;
 
 use Look\Common\Value\Id\Contract\Id;
 use Look\Common\Value\Name\Contract\Name;
+use Look\Common\Value\Percent\Contact\Percent;
 use Look\Common\Value\Photo\Contract\Photo;
 use Look\Common\Value\Slug\Contract\Slug;
 use Look\LookSelection\Domain\Clothes\Contract\Clothes;
 use Look\LookSelection\Domain\Event\Contract\Event;
+use Look\LookSelection\Domain\User\Contract\User;
 use Look\LookSelection\Domain\Weather\Contract\Weather;
 
 interface Look
@@ -48,4 +50,10 @@ interface Look
      * @return Event[]
      */
     public function getEvents(): array;
+
+    /**
+     * @param User $user
+     * @return Percent
+     */
+    public function getSuitableScore(User $user): Percent;
 }

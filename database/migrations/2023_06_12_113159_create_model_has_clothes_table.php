@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clothes_look', function (Blueprint $table) {
+        Schema::create('model_has_clothes', function (Blueprint $table) {
             $table->foreignId('clothes_id')->references('id')->on('clothes');
-            $table->foreignId('look_id')->references('id')->on('looks');
+            $table->foreignId('model_id');
+            $table->string('model_type');
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clothes_look');
+        Schema::dropIfExists('model_has_clothes');
     }
 };

@@ -7,6 +7,7 @@ namespace Tests\Unit\LookSelection\Infrastructure;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Look\LookSelection\Domain\User\Exception\UserNotFoundException;
+use Look\LookSelection\Infrastructure\Repository\EloquentClothesRepository;
 use Look\LookSelection\Infrastructure\Repository\EloquentStyleRepository;
 use Look\LookSelection\Infrastructure\Repository\EloquentUserRepository;
 use Psr\Log\LoggerInterface;
@@ -26,6 +27,7 @@ class EloquentUserRepositoryTest extends TestCase
 
         $userRepository = new EloquentUserRepository(
             $this->app->make(EloquentStyleRepository::class),
+            $this->app->make(EloquentClothesRepository::class),
             $this->app->make(LoggerInterface::class)
         );
         $user = $userRepository->getById($userModel->id);
@@ -39,6 +41,7 @@ class EloquentUserRepositoryTest extends TestCase
 
         $userRepository = new EloquentUserRepository(
             $this->app->make(EloquentStyleRepository::class),
+            $this->app->make(EloquentClothesRepository::class),
             $this->app->make(LoggerInterface::class)
         );
 

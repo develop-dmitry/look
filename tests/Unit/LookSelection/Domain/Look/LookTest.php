@@ -6,12 +6,15 @@ namespace Tests\Unit\LookSelection\Domain\Look;
 
 use DateTime;
 use Look\Common\Value\Id\Id;
+use Look\Common\Value\Id\NullId;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Photo\Photo;
 use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Clothes\Clothes;
 use Look\LookSelection\Domain\Event\Event;
 use Look\LookSelection\Domain\Look\Look;
+use Look\LookSelection\Domain\Style\Style;
+use Look\LookSelection\Domain\User\User;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
 use Look\LookSelection\Domain\Weather\Entity\Weather;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
@@ -200,5 +203,55 @@ class LookTest extends TestCase
         );
 
         $this->assertEmpty($look->getEvents());
+    }
+
+    public function testCalculationSuitableScore(): void
+    {
+        $casual = new Style(new Name('Casual'), new Slug('casual'));
+        $sport = new Style(new Name('Sport'), new Slug('sport'));
+        $military = new Style(new Name('Military'), new Slug('military'));
+        $minimal = new Style(new Name('Minimal'), new Slug('minimal'));
+
+        $jeans = new Clothes(
+            new Id(1),
+            new Name('Jeans'),
+            new Slug('jeans'),
+            new Photo('https://test.com/image.php'),
+            [$casual, $sport]
+        );
+        $shirt = new Clothes(
+            new Id(2),
+            new Name('Shirt'),
+            new Slug('shirt'),
+            new Photo('https://test.com/image.php'),
+            [$casual, $military]
+        );
+        $sneakers = new Clothes(
+            new Id(3),
+            new Name('Sneakers'),
+            new Slug('sneakers'),
+            new Photo('https://test.com/image.php'),
+            [$minimal, $military]
+        );
+        $cap = new Clothes(
+            new Id(4),
+            new Name('Cap'),
+            new Slug('cap'),
+            new Photo('https://test.com/image.php'),
+            [$sport, $military]
+        );
+
+        $look = new Look(
+            new Id(1),
+            new Name('test'),
+            new Photo('https://test.com/image.php'),
+            new Slug('test'),
+            $this->weather,
+            [$jeans, $shirt, $sneakers, $cap],
+            []
+        );
+        $user = new User(new NullId(), [$casual, $minimal], [$shirt, $sneakers, $cap]);
+
+        $this->assertEquals(67.5, $look->getSuitableScore($user)->getValue());
     }
 }

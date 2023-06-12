@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Look extends Model
 {
@@ -19,9 +20,9 @@ class Look extends Model
         'average_temperature'
     ];
 
-    public function clothes(): BelongsToMany
+    public function clothes(): MorphToMany
     {
-        return $this->belongsToMany(Clothes::class, 'clothes_look');
+        return $this->morphToMany(Clothes::class, 'model', 'model_has_clothes');
     }
 
     public function events(): BelongsToMany

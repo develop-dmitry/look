@@ -22,8 +22,13 @@ class Clothes extends Model
         return $this->morphToMany(Style::class, 'model', 'model_has_styles');
     }
 
-    public function looks(): BelongsToMany
+    public function looks(): MorphToMany
     {
-        return $this->belongsToMany(Look::class, 'clothes_look');
+        return $this->morphedByMany(User::class, 'model', 'model_has_clothes');
+    }
+
+    public function users(): MorphToMany
+    {
+        return $this->morphedByMany(User::class, 'model', 'model_has_clothes');
     }
 }

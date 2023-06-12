@@ -15,7 +15,7 @@ class ClothesSeeder extends Seeder
     {
         $styles = Style::all();
 
-        Clothes::factory(30)
+        Clothes::factory(1000)
             ->create()
             ->each(static fn(Clothes $clothes) => $clothes->styles()->attach($styles->random()));
     }

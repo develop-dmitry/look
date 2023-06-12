@@ -11,7 +11,8 @@ class User implements UserContract
 {
     public function __construct(
         protected Id $id,
-        protected array $styles
+        protected array $styles,
+        protected array $clothes
     ) {
     }
 
@@ -23,5 +24,10 @@ class User implements UserContract
     public function getStyles(): array
     {
         return $this->styles;
+    }
+
+    public function getClothes(): array
+    {
+        return $this->clothes;
     }
 }
