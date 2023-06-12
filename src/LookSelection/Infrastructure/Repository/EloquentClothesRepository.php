@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Infrastructure\Repository;
 
+use App\Models\Clothes as ClothesModel;
 use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Id\Id;
 use Look\Common\Value\Id\NullId;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
+use Look\LookSelection\Domain\Clothes\Clothes;
 use Look\LookSelection\Domain\Clothes\Contract\ClothesRepository;
 use Look\LookSelection\Domain\Look\Value\Photo;
 use Look\LookSelection\Domain\Style\Contract\StyleRepository;
 use Psr\Log\LoggerInterface;
-use Look\LookSelection\Domain\Clothes\Entity\Clothes;
-use App\Models\Clothes as ClothesModel;
 
 class EloquentClothesRepository implements ClothesRepository
 {

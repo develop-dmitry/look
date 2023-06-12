@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Infrastructure\Repository;
 
+use App\Models\Style as StyleModel;
 use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Style\Contract\StyleRepository;
+use Look\LookSelection\Domain\Style\Style;
 use Psr\Log\LoggerInterface;
-use Look\LookSelection\Domain\Style\Entity\Style;
-use App\Models\Style as StyleModel;
 
 class EloquentStyleRepository implements StyleRepository
 {

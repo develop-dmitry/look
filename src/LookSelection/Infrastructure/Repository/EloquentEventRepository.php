@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Infrastructure\Repository;
 
+use App\Models\Event as EventModel;
 use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Event\Contract\EventRepository;
-use Look\LookSelection\Domain\Event\Entity\Event;
-use App\Models\Event as EventModel;
+use Look\LookSelection\Domain\Event\Event;
 use Psr\Log\LoggerInterface;
 
 class EloquentEventRepository implements EventRepository

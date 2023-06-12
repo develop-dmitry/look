@@ -7,9 +7,9 @@ namespace Tests\Unit\LookSelection\Domain\Clothes;
 use Look\Common\Value\Id\Id;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
-use Look\LookSelection\Domain\Clothes\Entity\Clothes;
+use Look\LookSelection\Domain\Clothes\Clothes;
 use Look\LookSelection\Domain\Clothes\Value\Photo;
-use Look\LookSelection\Domain\Style\Entity\Style;
+use Look\LookSelection\Domain\Style\Style;
 use Tests\TestCase;
 
 class ClothesTest extends TestCase

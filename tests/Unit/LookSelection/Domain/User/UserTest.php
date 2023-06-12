@@ -7,7 +7,7 @@ namespace Tests\Unit\LookSelection\Domain\User;
 use Look\Common\Value\Id\Id;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
-use Look\LookSelection\Domain\Style\Entity\Style;
+use Look\LookSelection\Domain\Style\Style;
 use Look\LookSelection\Domain\User\User;
 use Tests\TestCase;
 

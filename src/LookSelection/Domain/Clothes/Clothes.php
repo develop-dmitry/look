@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Look\LookSelection\Domain\Clothes\Entity;
+namespace Look\LookSelection\Domain\Clothes;
 
 use Look\Common\Value\Id\Contract\Id;
 use Look\Common\Value\Name\Contract\Name;

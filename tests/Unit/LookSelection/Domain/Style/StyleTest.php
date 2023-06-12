@@ -6,7 +6,7 @@ namespace Tests\Unit\LookSelection\Domain\Style;
 
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
-use Look\LookSelection\Domain\Style\Entity\Style;
+use Look\LookSelection\Domain\Style\Style;
 use Tests\TestCase;
 
 class StyleTest extends TestCase

@@ -6,7 +6,7 @@ namespace Tests\Unit\LookSelection\Domain\Event;
 
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
-use Look\LookSelection\Domain\Event\Entity\Event;
+use Look\LookSelection\Domain\Event\Event;
 use Tests\TestCase;
 
 class EventTest extends TestCase

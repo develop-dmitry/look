@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Infrastructure\Repository;
 
+use App\Models\Look as LookModel;
 use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Id\Id;
 use Look\Common\Value\Id\NullId;
@@ -12,9 +13,8 @@ use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Clothes\Contract\ClothesRepository;
 use Look\LookSelection\Domain\Event\Contract\EventRepository;
 use Look\LookSelection\Domain\Look\Contract\LookRepository;
-use Look\LookSelection\Domain\Look\Entity\Look;
 use Look\LookSelection\Domain\Look\Exception\LookNotFoundException;
-use App\Models\Look as LookModel;
+use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\Look\Value\Photo;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
 use Look\LookSelection\Domain\Weather\Entity\Weather;
