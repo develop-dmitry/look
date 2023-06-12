@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Look\LookSelection\Infrastructure\Repository;
 
 use App\Models\Look as LookModel;
+use Illuminate\Database\Eloquent\Builder;
 use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Id\Id;
 use Look\Common\Value\Id\NullId;
@@ -48,6 +49,31 @@ class EloquentLookRepository implements LookRepository
 
             throw new LookNotFoundException($exception->getMessage());
         }
+    }
+
+    public function findByEventAndWeather(string $eventSlug, float $minTemperature, float $maxTemperature): array
+    {
+        $result = [];
+
+        $looks = LookModel::where('min_temperature', '>=', $minTemperature)
+            ->where('max_temperature', '<=', $maxTemperature)
+            ->whereHas('events', function (Builder $builder) use ($eventSlug) {
+                $builder->where('slug', $eventSlug);
+            })
+            ->get();
+
+        foreach ($looks as $look) {
+            try {
+                $result[] = $this->makeEntity($look);
+            } catch (InvalidValueException $exception) {
+                $this->logger->error('Invalid look in database', [
+                    'look' => $look->toArray(),
+                    'exception' => $exception->getMessage()
+                ]);
+            }
+        }
+
+        return $result;
     }
 
     /**

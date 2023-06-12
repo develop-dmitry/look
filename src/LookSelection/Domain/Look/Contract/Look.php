@@ -11,6 +11,7 @@ use Look\Common\Value\Photo\Contract\Photo;
 use Look\Common\Value\Slug\Contract\Slug;
 use Look\LookSelection\Domain\Clothes\Contract\Clothes;
 use Look\LookSelection\Domain\Event\Contract\Event;
+use Look\LookSelection\Domain\Style\Contract\Style;
 use Look\LookSelection\Domain\User\Contract\User;
 use Look\LookSelection\Domain\Weather\Contract\Weather;
 
@@ -52,8 +53,14 @@ interface Look
     public function getEvents(): array;
 
     /**
+     * @return Style[]
+     */
+    public function getStyles(): array;
+
+    /**
+     * @param SuitableCalculatorStrategy $calculatorStrategy
      * @param User $user
      * @return Percent
      */
-    public function getSuitableScore(User $user): Percent;
+    public function getSuitableScore(SuitableCalculatorStrategy $calculatorStrategy, User $user): Percent;
 }

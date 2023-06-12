@@ -12,6 +12,7 @@ use Look\Common\Value\Photo\Photo;
 use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Clothes\Clothes;
 use Look\LookSelection\Domain\Event\Event;
+use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategy;
 use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\Style\Style;
 use Look\LookSelection\Domain\User\User;
@@ -32,6 +33,8 @@ class LookTest extends TestCase
 
     protected Weather $weather;
 
+    protected array $styles;
+
     protected array $clothes;
 
     protected array $events;
@@ -51,13 +54,26 @@ class LookTest extends TestCase
             WeatherPeriod::Morning,
             new DateTime()
         );
-        $this->clothes = [new Clothes(
-            new Id(1),
-            new Name('Тест'),
-            new Slug('test'),
-            new Photo('https://test.com/storage/image.png'),
-            []
-        )];
+        $this->styles = [
+            new Style(new Name('Тест'), new Slug('test')),
+            new Style(new Name('Тест 2'), new Slug('test-two'))
+        ];
+        $this->clothes = [
+            new Clothes(
+                new Id(1),
+                new Name('Тест'),
+                new Slug('test'),
+                new Photo('https://test.com/storage/image.png'),
+                $this->styles
+            ),
+            new Clothes(
+                new Id(2),
+                new Name('Тест 2'),
+                new Slug('test-two'),
+                new Photo('https://test.com/storage/image.png'),
+                $this->styles
+            )
+        ];
         $this->events = [new Event(new Name('Тест'), new Slug('test'))];
     }
 
@@ -205,6 +221,44 @@ class LookTest extends TestCase
         $this->assertEmpty($look->getEvents());
     }
 
+    public function testLookShouldReturnStyles(): void
+    {
+        $look = new Look(
+            $this->id,
+            $this->name,
+            $this->photo,
+            $this->slug,
+            $this->weather,
+            $this->clothes,
+            []
+        );
+
+        $this->assertCount(count($this->styles), $look->getStyles());
+    }
+
+    public function testLookWhereClothesWithoutStylesShouldReturnEmptyStylesArray(): void
+    {
+        $clothes = new Clothes(
+            new Id(1),
+            new Name('Тест'),
+            new Slug('test'),
+            new Photo('https://test.com/image.png'),
+            []
+        );
+
+        $look = new Look(
+            $this->id,
+            $this->name,
+            $this->photo,
+            $this->slug,
+            $this->weather,
+            [$clothes],
+            []
+        );
+
+        $this->assertEmpty($look->getStyles());
+    }
+
     public function testCalculationSuitableScore(): void
     {
         $casual = new Style(new Name('Casual'), new Slug('casual'));
@@ -252,6 +306,8 @@ class LookTest extends TestCase
         );
         $user = new User(new NullId(), [$casual, $minimal], [$shirt, $sneakers, $cap]);
 
-        $this->assertEquals(67.5, $look->getSuitableScore($user)->getValue());
+        $suitableScore = $look->getSuitableScore($this->app->make(SuitableCalculatorStrategy::class), $user);
+
+        $this->assertEquals(67.5, $suitableScore->getValue());
     }
 }
