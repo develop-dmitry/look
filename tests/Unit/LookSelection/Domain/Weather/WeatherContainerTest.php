@@ -8,9 +8,9 @@ use DateTime;
 use DateTimeInterface;
 use Look\LookSelection\Domain\Weather\Container\WeatherContainer;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
 use Look\LookSelection\Domain\Weather\Exception\WeatherDoesNotExistsException;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Weather;
 use Tests\TestCase;
 
 class WeatherContainerTest extends TestCase

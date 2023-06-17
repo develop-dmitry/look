@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Look\Auth\Domain\User\Entity;
+namespace Look\Auth\Domain\User;
 
 use Look\Auth\Domain\User\Contract\UserInterface;
 use Look\Auth\Domain\User\Value\TelegramToken;

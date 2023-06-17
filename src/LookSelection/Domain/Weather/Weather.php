@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Look\LookSelection\Domain\Weather\Entity;
+namespace Look\LookSelection\Domain\Weather;
 
 use DateTimeInterface;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;

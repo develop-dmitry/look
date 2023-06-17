@@ -9,13 +9,13 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Look\Common\Exception\InvalidValueException;
+use Look\LookSelection\Domain\Weather\Container\WeatherContainer;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
 use Look\LookSelection\Domain\Weather\Contract\WeatherGatewayInterface;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
 use Look\LookSelection\Domain\Weather\Exception\FailedGetWeatherException;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Weather;
 use Psr\Log\LoggerInterface;
-use Look\LookSelection\Domain\Weather\Container\WeatherContainer;
 
 class YandexWeatherGateway implements WeatherGatewayInterface
 {

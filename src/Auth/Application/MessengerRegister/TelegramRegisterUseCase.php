@@ -9,8 +9,8 @@ use Look\Auth\Application\MessengerRegister\DTO\MessengerRegisterRequest;
 use Look\Auth\Application\MessengerRegister\DTO\MessengerRegisterResponse;
 use Look\Auth\Application\MessengerRegister\Exception\UserAlreadyExistsException;
 use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
-use Look\Auth\Domain\User\Entity\User;
 use Look\Auth\Domain\User\Exception\UserWasNotCreateException;
+use Look\Auth\Domain\User\User;
 use Look\Auth\Domain\User\Value\TelegramToken;
 use Look\Common\Exception\InvalidValueException;
 

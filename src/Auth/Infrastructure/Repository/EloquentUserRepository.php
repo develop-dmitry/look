@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Look\Auth\Infrastructure\Repository;
 
-use Look\Auth\Domain\User\Exception\UserWasNotCreateException;
-use Look\Common\Exception\InvalidValueException;
+use App\Models\User as UserModel;
 use Look\Auth\Domain\User\Contract\UserInterface;
 use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
-use App\Models\User as UserModel;
-use Look\Auth\Domain\User\Entity\User as UserEntity;
 use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
+use Look\Auth\Domain\User\Exception\UserWasNotCreateException;
+use Look\Auth\Domain\User\User as UserEntity;
 use Look\Auth\Domain\User\Value\TelegramToken;
+use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Id\Id;
 use Psr\Log\LoggerInterface;
 use Throwable;

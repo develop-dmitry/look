@@ -6,8 +6,8 @@ namespace Tests\Unit\LookSelection\Domain\Weather;
 
 use DateTime;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Weather;
 use Tests\TestCase;
 
 class WeatherTest extends TestCase

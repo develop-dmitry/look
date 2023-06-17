@@ -17,8 +17,8 @@ use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\Style\Style;
 use Look\LookSelection\Domain\User\User;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Weather;
 use Tests\TestCase;
 
 class LookTest extends TestCase

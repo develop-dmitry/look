@@ -11,8 +11,8 @@ use Look\LookSelection\Application\NearestWeather\NearestWeatherUseCase;
 use Look\LookSelection\Domain\Weather\Container\WeatherContainer;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
 use Look\LookSelection\Domain\Weather\Contract\WeatherGatewayInterface;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Weather;
 use Tests\TestCase;
 
 class NearestWeatherTest extends TestCase

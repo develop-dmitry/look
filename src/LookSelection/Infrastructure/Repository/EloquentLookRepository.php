@@ -18,8 +18,8 @@ use Look\LookSelection\Domain\Look\Exception\LookNotFoundException;
 use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\Look\Value\Photo;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Weather;
 use Psr\Log\LoggerInterface;
 
 class EloquentLookRepository implements LookRepositoryInterface

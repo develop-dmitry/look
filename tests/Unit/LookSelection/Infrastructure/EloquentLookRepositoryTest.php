@@ -9,13 +9,7 @@ use App\Models\Event;
 use App\Models\Look;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Look\LookSelection\Domain\Look\Exception\LookNotFoundException;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
-use Look\LookSelection\Infrastructure\Repository\EloquentClothesRepository;
-use Look\LookSelection\Infrastructure\Repository\EloquentEventRepository;
 use Look\LookSelection\Infrastructure\Repository\EloquentLookRepository;
-use Psr\Log\LoggerInterface;
 use Tests\TestCase;
 
 class EloquentLookRepositoryTest extends TestCase
