@@ -6,10 +6,10 @@ namespace Look\LookSelection\Domain\Weather\Entity;
 
 use DateTimeInterface;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Contract\Weather as WeatherContract;
+use Look\LookSelection\Domain\Weather\Contract\WeatherInterface;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
 
-class Weather implements WeatherContract
+class Weather implements WeatherInterface
 {
     public function __construct(
         protected Temperature $minTemperature,

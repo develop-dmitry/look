@@ -6,9 +6,9 @@ namespace Look\LookSelection\Domain\Event;
 
 use Look\Common\Value\Name\Contract\Name;
 use Look\Common\Value\Slug\Contract\Slug;
-use Look\LookSelection\Domain\Event\Contract\Event as EventContract;
+use Look\LookSelection\Domain\Event\Contract\EventInterface;
 
-class Event implements EventContract
+class Event implements EventInterface
 {
     public function __construct(
         protected Name $name,

@@ -9,33 +9,33 @@ use Look\Common\Value\Id\Contract\Id;
 use Look\Common\Value\Name\Contract\Name;
 use Look\Common\Value\Photo\Contract\Photo;
 use Look\Common\Value\Slug\Contract\Slug;
-use Look\LookSelection\Domain\Clothes\Contract\Clothes;
-use Look\LookSelection\Domain\Event\Contract\Event;
-use Look\LookSelection\Domain\Look\Contract\Look as LookContract;
-use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategy;
-use Look\LookSelection\Domain\User\Contract\User;
-use Look\LookSelection\Domain\Weather\Contract\Weather;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesInterface;
+use Look\LookSelection\Domain\Event\Contract\EventInterface;
+use Look\LookSelection\Domain\Look\Contract\LookInterface;
+use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategyInterface;
+use Look\LookSelection\Domain\User\Contract\UserInterface;
+use Look\LookSelection\Domain\Weather\Contract\WeatherInterface;
 use Look\Common\Value\Percent\Percent;
 
-class Look implements LookContract
+class Look implements LookInterface
 {
     /**
      * @param Id $id
      * @param Name $name
      * @param Photo $photo
      * @param Slug $slug
-     * @param Weather $weather
-     * @param Clothes[] $clothes
-     * @param Event[] $events
+     * @param WeatherInterface $weather
+     * @param ClothesInterface[] $clothes
+     * @param EventInterface[] $events
      */
     public function __construct(
-        protected Id $id,
-        protected Name $name,
-        protected Photo $photo,
-        protected Slug $slug,
-        protected Weather $weather,
-        protected array $clothes,
-        protected array $events
+        protected Id               $id,
+        protected Name             $name,
+        protected Photo            $photo,
+        protected Slug             $slug,
+        protected WeatherInterface $weather,
+        protected array            $clothes,
+        protected array            $events
     ) {
     }
 
@@ -59,7 +59,7 @@ class Look implements LookContract
         return $this->slug;
     }
 
-    public function getWeather(): Weather
+    public function getWeather(): WeatherInterface
     {
         return $this->weather;
     }
@@ -89,7 +89,7 @@ class Look implements LookContract
         return array_values($styles);
     }
 
-    public function getSuitableScore(SuitableCalculatorStrategy $calculatorStrategy, User $user): Percent
+    public function getSuitableScore(SuitableCalculatorStrategyInterface $calculatorStrategy, UserInterface $user): Percent
     {
         $suitableScore = $calculatorStrategy->execute($this, $user);
 

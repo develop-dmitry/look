@@ -8,9 +8,9 @@ use Look\Common\Value\Id\Contract\Id;
 use Look\Common\Value\Name\Contract\Name;
 use Look\Common\Value\Photo\Contract\Photo;
 use Look\Common\Value\Slug\Contract\Slug;
-use Look\LookSelection\Domain\Style\Contract\Style;
+use Look\LookSelection\Domain\Style\Contract\StyleInterface;
 
-interface Clothes
+interface ClothesInterface
 {
     public function getId(): Id;
 
@@ -30,7 +30,7 @@ interface Clothes
     public function getPhoto(): Photo;
 
     /**
-     * @return Style[]
+     * @return StyleInterface[]
      */
     public function getStyles(): array;
 }

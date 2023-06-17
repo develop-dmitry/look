@@ -8,17 +8,17 @@ use Look\Common\Value\Id\Contract\Id;
 use Look\Common\Value\Name\Contract\Name;
 use Look\Common\Value\Photo\Contract\Photo;
 use Look\Common\Value\Slug\Contract\Slug;
-use Look\LookSelection\Domain\Clothes\Contract\Clothes as ClothesContract;
-use Look\LookSelection\Domain\Style\Contract\Style;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesInterface;
+use Look\LookSelection\Domain\Style\Contract\StyleInterface;
 
-class Clothes implements ClothesContract
+class Clothes implements ClothesInterface
 {
     /**
      * @param Id $id
      * @param Name $name
      * @param Slug $slug
      * @param Photo $photo
-     * @param Style[] $styles
+     * @param StyleInterface[] $styles
      */
     public function __construct(
         protected Id $id,

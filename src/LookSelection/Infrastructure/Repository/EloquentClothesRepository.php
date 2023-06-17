@@ -11,16 +11,16 @@ use Look\Common\Value\Id\NullId;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Clothes\Clothes;
-use Look\LookSelection\Domain\Clothes\Contract\ClothesRepository;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesRepositoryInterface;
 use Look\LookSelection\Domain\Look\Value\Photo;
-use Look\LookSelection\Domain\Style\Contract\StyleRepository;
+use Look\LookSelection\Domain\Style\Contract\StyleRepositoryInterface;
 use Psr\Log\LoggerInterface;
 
-class EloquentClothesRepository implements ClothesRepository
+class EloquentClothesRepository implements ClothesRepositoryInterface
 {
     public function __construct(
-        protected StyleRepository $styleRepository,
-        protected LoggerInterface $logger
+        protected StyleRepositoryInterface $styleRepository,
+        protected LoggerInterface          $logger
     ) {
     }
 

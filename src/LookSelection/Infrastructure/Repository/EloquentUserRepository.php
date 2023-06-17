@@ -7,20 +7,20 @@ namespace Look\LookSelection\Infrastructure\Repository;
 use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Id\Id;
 use Look\Common\Value\Id\NullId;
-use Look\LookSelection\Domain\Clothes\Contract\ClothesRepository;
-use Look\LookSelection\Domain\Style\Contract\StyleRepository;
-use Look\LookSelection\Domain\User\Contract\UserRepository;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesRepositoryInterface;
+use Look\LookSelection\Domain\Style\Contract\StyleRepositoryInterface;
+use Look\LookSelection\Domain\User\Contract\UserRepositoryInterface;
 use Look\LookSelection\Domain\User\Exception\UserNotFoundException;
 use Psr\Log\LoggerInterface;
 use Look\LookSelection\Domain\User\User;
 use App\Models\User as UserModel;
 
-class EloquentUserRepository implements UserRepository
+class EloquentUserRepository implements UserRepositoryInterface
 {
     public function __construct(
-        protected StyleRepository $styleRepository,
-        protected ClothesRepository $clothesRepository,
-        protected LoggerInterface $logger
+        protected StyleRepositoryInterface   $styleRepository,
+        protected ClothesRepositoryInterface $clothesRepository,
+        protected LoggerInterface            $logger
     ) {
     }
 

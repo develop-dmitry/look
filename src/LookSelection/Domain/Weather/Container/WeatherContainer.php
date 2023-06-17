@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Look\LookSelection\Domain\Weather\Container;
 
 use DateTimeInterface;
-use Look\LookSelection\Domain\Weather\Contract\Weather;
-use Look\LookSelection\Domain\Weather\Contract\WeatherContainer as WeatherContainerContract;
+use Look\LookSelection\Domain\Weather\Contract\WeatherInterface;
+use Look\LookSelection\Domain\Weather\Contract\WeatherContainerInterface;
 use Look\LookSelection\Domain\Weather\Exception\WeatherDoesNotExistsException;
 
-class WeatherContainer implements WeatherContainerContract
+class WeatherContainer implements WeatherContainerInterface
 {
     protected string $dateFormat = 'Y-m-d';
 
     protected array $items = [];
 
-    public function addWeather(Weather $weather): void
+    public function addWeather(WeatherInterface $weather): void
     {
         $formattedDate = $this->formattedDate($weather->getDate());
         $period = $weather->getPeriod()->value;
@@ -30,7 +30,7 @@ class WeatherContainer implements WeatherContainerContract
         return $this->items[$this->formattedDate($date)] ?? [];
     }
 
-    public function getWeather(DateTimeInterface $date, WeatherPeriod $period): Weather
+    public function getWeather(DateTimeInterface $date, WeatherPeriod $period): WeatherInterface
     {
         if (!$this->hasWeatherForDate($date)) {
             throw new WeatherDoesNotExistsException();

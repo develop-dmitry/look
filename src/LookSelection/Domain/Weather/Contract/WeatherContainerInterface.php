@@ -9,25 +9,25 @@ use Iterator;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
 use Look\LookSelection\Domain\Weather\Exception\WeatherDoesNotExistsException;
 
-interface WeatherContainer
+interface WeatherContainerInterface
 {
     /**
-     * @param Weather $weather
+     * @param WeatherInterface $weather
      * @return void
      */
-    public function addWeather(Weather $weather): void;
+    public function addWeather(WeatherInterface $weather): void;
 
     /**
      * @param DateTimeInterface $date
      * @param WeatherPeriod $period
-     * @return Weather
+     * @return WeatherInterface
      * @throws WeatherDoesNotExistsException
      */
-    public function getWeather(DateTimeInterface $date, WeatherPeriod $period): Weather;
+    public function getWeather(DateTimeInterface $date, WeatherPeriod $period): WeatherInterface;
 
     /**
      * @param DateTimeInterface $date
-     * @return Weather[]
+     * @return WeatherInterface[]
      */
     public function getWeatherForDate(DateTimeInterface $date): array;
 

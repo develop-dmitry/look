@@ -11,9 +11,9 @@ use Look\Common\Value\Id\Id;
 use Look\Common\Value\Id\NullId;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
-use Look\LookSelection\Domain\Clothes\Contract\ClothesRepository;
-use Look\LookSelection\Domain\Event\Contract\EventRepository;
-use Look\LookSelection\Domain\Look\Contract\LookRepository;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesRepositoryInterface;
+use Look\LookSelection\Domain\Event\Contract\EventRepositoryInterface;
+use Look\LookSelection\Domain\Look\Contract\LookRepositoryInterface;
 use Look\LookSelection\Domain\Look\Exception\LookNotFoundException;
 use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\Look\Value\Photo;
@@ -22,12 +22,12 @@ use Look\LookSelection\Domain\Weather\Entity\Weather;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
 use Psr\Log\LoggerInterface;
 
-class EloquentLookRepository implements LookRepository
+class EloquentLookRepository implements LookRepositoryInterface
 {
     public function __construct(
-        protected EventRepository $eventRepository,
-        protected ClothesRepository $clothesRepository,
-        protected LoggerInterface $logger
+        protected EventRepositoryInterface   $eventRepository,
+        protected ClothesRepositoryInterface $clothesRepository,
+        protected LoggerInterface            $logger
     ) {
     }
 

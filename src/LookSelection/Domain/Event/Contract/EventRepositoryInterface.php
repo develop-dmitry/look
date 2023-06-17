@@ -6,18 +6,18 @@ namespace Look\LookSelection\Domain\Event\Contract;
 
 use Look\LookSelection\Domain\Event\Exception\EventNotFoundException;
 
-interface EventRepository
+interface EventRepositoryInterface
 {
     /**
      * @param array $ids
-     * @return Event[]
+     * @return EventInterface[]
      */
     public function findById(array $ids): array;
 
     /**
      * @param int $id
-     * @return Event
+     * @return EventInterface
      * @throws EventNotFoundException
      */
-    public function getById(int $id): Event;
+    public function getById(int $id): EventInterface;
 }

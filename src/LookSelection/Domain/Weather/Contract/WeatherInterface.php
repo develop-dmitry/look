@@ -8,7 +8,7 @@ use DateTimeInterface;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
 
-interface Weather
+interface WeatherInterface
 {
     /**
      * @return Temperature

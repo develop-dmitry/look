@@ -6,20 +6,20 @@ namespace Look\LookSelection\Domain\Look\Contract;
 
 use Look\LookSelection\Domain\Look\Exception\LookNotFoundException;
 
-interface LookRepository
+interface LookRepositoryInterface
 {
     /**
      * @param string $slug
-     * @return Look
+     * @return LookInterface
      * @throws LookNotFoundException
      */
-    public function getBySlug(string $slug): Look;
+    public function getBySlug(string $slug): LookInterface;
 
     /**
      * @param string $eventSlug
      * @param float $minTemperature
      * @param float $maxTemperature
-     * @return Look[]
+     * @return LookInterface[]
      */
     public function findByEventAndWeather(string $eventSlug, float $minTemperature, float $maxTemperature): array;
 }

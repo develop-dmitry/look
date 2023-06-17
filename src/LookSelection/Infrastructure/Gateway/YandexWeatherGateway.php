@@ -10,14 +10,14 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Look\Common\Exception\InvalidValueException;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Contract\WeatherGateway as WeatherGatewayContact;
+use Look\LookSelection\Domain\Weather\Contract\WeatherGatewayInterface;
 use Look\LookSelection\Domain\Weather\Entity\Weather;
 use Look\LookSelection\Domain\Weather\Exception\FailedGetWeatherException;
 use Look\LookSelection\Domain\Weather\Value\Temperature;
 use Psr\Log\LoggerInterface;
 use Look\LookSelection\Domain\Weather\Container\WeatherContainer;
 
-class YandexWeatherGateway implements WeatherGatewayContact
+class YandexWeatherGateway implements WeatherGatewayInterface
 {
     protected string $url = 'https://api.weather.yandex.ru/v2/informers';
 

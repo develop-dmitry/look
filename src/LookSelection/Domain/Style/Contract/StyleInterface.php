@@ -7,7 +7,7 @@ namespace Look\LookSelection\Domain\Style\Contract;
 use Look\Common\Value\Name\Contract\Name;
 use Look\Common\Value\Slug\Contract\Slug;
 
-interface Style
+interface StyleInterface
 {
     /**
      * @return Name

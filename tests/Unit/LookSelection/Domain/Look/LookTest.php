@@ -12,7 +12,7 @@ use Look\Common\Value\Photo\Photo;
 use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Clothes\Clothes;
 use Look\LookSelection\Domain\Event\Event;
-use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategy;
+use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategyInterface;
 use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\Style\Style;
 use Look\LookSelection\Domain\User\User;
@@ -306,7 +306,7 @@ class LookTest extends TestCase
         );
         $user = new User(new NullId(), [$casual, $minimal], [$shirt, $sneakers, $cap]);
 
-        $suitableScore = $look->getSuitableScore($this->app->make(SuitableCalculatorStrategy::class), $user);
+        $suitableScore = $look->getSuitableScore($this->app->make(SuitableCalculatorStrategyInterface::class), $user);
 
         $this->assertEquals(67.5, $suitableScore->getValue());
     }

@@ -8,13 +8,13 @@ use DateTime;
 use Look\LookSelection\Application\NearestWeather\Contract\NearestWeather;
 use Look\LookSelection\Application\NearestWeather\DTO\NearestWeatherRequest;
 use Look\LookSelection\Application\NearestWeather\DTO\NearestWeatherResponse;
-use Look\LookSelection\Domain\Weather\Contract\WeatherGateway;
+use Look\LookSelection\Domain\Weather\Contract\WeatherGatewayInterface;
 use Look\LookSelection\Domain\Weather\Exception\FailedGetWeatherException;
 
 class NearestWeatherUseCase implements NearestWeather
 {
     public function __construct(
-        protected WeatherGateway $weatherGateway
+        protected WeatherGatewayInterface $weatherGateway
     ) {
     }
 

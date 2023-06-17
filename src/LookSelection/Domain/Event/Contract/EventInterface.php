@@ -7,7 +7,7 @@ namespace Look\LookSelection\Domain\Event\Contract;
 use Look\Common\Value\Name\Contract\Name;
 use Look\Common\Value\Slug\Contract\Slug;
 
-interface Event
+interface EventInterface
 {
     /**
      * @return Name

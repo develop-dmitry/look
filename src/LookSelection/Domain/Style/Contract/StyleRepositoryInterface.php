@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Look\LookSelection\Domain\Clothes\Contract;
+namespace Look\LookSelection\Domain\Style\Contract;
 
-interface ClothesRepository
+interface StyleRepositoryInterface
 {
     /**
      * @param array $ids
-     * @return Clothes[]
+     * @return StyleInterface[]
      */
     public function findById(array $ids): array;
 }

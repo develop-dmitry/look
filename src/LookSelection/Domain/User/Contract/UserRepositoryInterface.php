@@ -6,12 +6,12 @@ namespace Look\LookSelection\Domain\User\Contract;
 
 use Look\LookSelection\Domain\User\Exception\UserNotFoundException;
 
-interface UserRepository
+interface UserRepositoryInterface
 {
     /**
      * @param int $id
-     * @return User
+     * @return UserInterface
      * @throws UserNotFoundException
      */
-    public function getById(int $id): User;
+    public function getById(int $id): UserInterface;
 }
