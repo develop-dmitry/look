@@ -5,25 +5,25 @@ declare(strict_types=1);
 namespace Look\LookSelection\Domain\Weather\Contract;
 
 use DateTimeInterface;
+use Look\Common\Value\Temperature\TemperatureInterface;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
 
 interface WeatherInterface
 {
     /**
-     * @return Temperature
+     * @return TemperatureInterface
      */
-    public function getMinTemperature(): Temperature;
+    public function getMinTemperature(): TemperatureInterface;
 
     /**
-     * @return Temperature
+     * @return TemperatureInterface
      */
-    public function getMaxTemperature(): Temperature;
+    public function getMaxTemperature(): TemperatureInterface;
 
     /**
-     * @return Temperature
+     * @return TemperatureInterface
      */
-    public function getAverageTemperature(): Temperature;
+    public function getAverageTemperature(): TemperatureInterface;
 
     /**
      * @return WeatherPeriod

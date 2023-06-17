@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Look\LookSelection\Application\PickLook;
 
 use Look\Common\Exception\InvalidValueException;
+use Look\Common\Value\Temperature\Temperature;
 use Look\LookSelection\Application\PickLook\Contract\PickLookInterface;
 use Look\LookSelection\Application\PickLook\DTO\PickLookRequest;
 use Look\LookSelection\Application\PickLook\DTO\PickLookResponse;
@@ -18,8 +19,7 @@ use Look\LookSelection\Domain\User\Contract\UserInterface;
 use Look\LookSelection\Domain\User\Contract\UserRepositoryInterface;
 use Look\LookSelection\Domain\User\Exception\UserNotFoundException;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Contract\WeatherInterface as WeatherInterface;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Contract\WeatherInterface;
 use Look\LookSelection\Domain\Weather\Weather;
 use Psr\Log\LoggerInterface;
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Look\LookSelection\Domain\Weather\Value;
+namespace Look\Common\Value\Temperature;
 
 use Look\Common\Exception\InvalidValueException;
 
-class Temperature
+class Temperature implements TemperatureInterface
 {
     protected float $value;
 
@@ -16,26 +16,13 @@ class Temperature
      */
     public function __construct(float $value)
     {
-        $this->setValue($value);
+        $this->validate($value);
+        $this->value = $value;
     }
 
-
-    /**
-     * @return float
-     */
     public function getValue(): float
     {
         return $this->value;
-    }
-
-    /**
-     * @param float $value
-     * @throws InvalidValueException
-     */
-    public function setValue(float $value): void
-    {
-        $this->validate($value);
-        $this->value = $value;
     }
 
     /**

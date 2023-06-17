@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\LookSelection\Domain\Weather;
+namespace Tests\Unit\Common\Value;
 
 use Look\Common\Exception\InvalidValueException;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\Common\Value\Temperature\Temperature;
 use Tests\TestCase;
 
 class TemperatureTest extends TestCase

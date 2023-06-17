@@ -11,6 +11,7 @@ use Look\Common\Value\Id\Id;
 use Look\Common\Value\Id\NullId;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
+use Look\Common\Value\Temperature\Temperature;
 use Look\LookSelection\Domain\Clothes\Contract\ClothesRepositoryInterface;
 use Look\LookSelection\Domain\Event\Contract\EventRepositoryInterface;
 use Look\LookSelection\Domain\Look\Contract\LookRepositoryInterface;
@@ -18,7 +19,6 @@ use Look\LookSelection\Domain\Look\Exception\LookNotFoundException;
 use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\Look\Value\Photo;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
 use Look\LookSelection\Domain\Weather\Weather;
 use Psr\Log\LoggerInterface;
 

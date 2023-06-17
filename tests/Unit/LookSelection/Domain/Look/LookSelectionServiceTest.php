@@ -10,6 +10,7 @@ use Look\Common\Value\Id\NullId;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Photo\Photo;
 use Look\Common\Value\Slug\Slug;
+use Look\Common\Value\Temperature\Temperature;
 use Look\LookSelection\Domain\Clothes\Clothes;
 use Look\LookSelection\Domain\Event\Event;
 use Look\LookSelection\Domain\Look\Contract\LookRepositoryInterface;
@@ -19,7 +20,6 @@ use Look\LookSelection\Domain\Look\Service\LookSelectionService;
 use Look\LookSelection\Domain\Style\Style;
 use Look\LookSelection\Domain\User\User;
 use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
 use Look\LookSelection\Domain\Weather\Weather;
 use Tests\TestCase;
 
