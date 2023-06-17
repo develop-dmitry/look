@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\Style\Contract;
 
-use Look\Common\Value\Name\Contract\Name;
-use Look\Common\Value\Slug\Contract\Slug;
+use Look\Common\Value\Name\Contract\NameInterface;
+use Look\Common\Value\Slug\Contract\SlugInterface;
 
 interface StyleInterface
 {
     /**
-     * @return Name
+     * @return NameInterface
      */
-    public function getName(): Name;
+    public function getName(): NameInterface;
 
     /**
-     * @return Slug
+     * @return SlugInterface
      */
-    public function getSlug(): Slug;
+    public function getSlug(): SlugInterface;
 }

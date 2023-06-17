@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Look\LookSelection\Domain\Look;
 
 use Look\Common\Exception\InvalidValueException;
-use Look\Common\Value\Id\Contract\Id;
-use Look\Common\Value\Name\Contract\Name;
-use Look\Common\Value\Photo\Contract\Photo;
-use Look\Common\Value\Slug\Contract\Slug;
+use Look\Common\Value\Id\Contract\IdInterface;
+use Look\Common\Value\Name\Contract\NameInterface;
+use Look\Common\Value\Photo\Contract\PhotoInterface;
+use Look\Common\Value\Slug\Contract\SlugInterface;
 use Look\LookSelection\Domain\Clothes\Contract\ClothesInterface;
 use Look\LookSelection\Domain\Event\Contract\EventInterface;
 use Look\LookSelection\Domain\Look\Contract\LookInterface;
@@ -20,41 +20,41 @@ use Look\Common\Value\Percent\Percent;
 class Look implements LookInterface
 {
     /**
-     * @param Id $id
-     * @param Name $name
-     * @param Photo $photo
-     * @param Slug $slug
+     * @param IdInterface $id
+     * @param NameInterface $name
+     * @param PhotoInterface $photo
+     * @param SlugInterface $slug
      * @param WeatherInterface $weather
      * @param ClothesInterface[] $clothes
      * @param EventInterface[] $events
      */
     public function __construct(
-        protected Id               $id,
-        protected Name             $name,
-        protected Photo            $photo,
-        protected Slug             $slug,
+        protected IdInterface      $id,
+        protected NameInterface    $name,
+        protected PhotoInterface   $photo,
+        protected SlugInterface    $slug,
         protected WeatherInterface $weather,
         protected array            $clothes,
         protected array            $events
     ) {
     }
 
-    public function getId(): Id
+    public function getId(): IdInterface
     {
         return $this->id;
     }
 
-    public function getName(): Name
+    public function getName(): NameInterface
     {
         return $this->name;
     }
 
-    public function getPhoto(): Photo
+    public function getPhoto(): PhotoInterface
     {
         return $this->photo;
     }
 
-    public function getSlug(): Slug
+    public function getSlug(): SlugInterface
     {
         return $this->slug;
     }

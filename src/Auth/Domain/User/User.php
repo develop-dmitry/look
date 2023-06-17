@@ -6,17 +6,17 @@ namespace Look\Auth\Domain\User;
 
 use Look\Auth\Domain\User\Contract\UserInterface;
 use Look\Auth\Domain\User\Value\TelegramToken;
-use Look\Common\Value\Id\Contract\Id;
+use Look\Common\Value\Id\Contract\IdInterface;
 
 class User implements UserInterface
 {
     public function __construct(
-        protected ?Id $id,
+        protected ?IdInterface   $id,
         protected ?TelegramToken $telegramToken
     ) {
     }
 
-    public function getId(): ?Id
+    public function getId(): ?IdInterface
     {
         return $this->id;
     }
@@ -26,7 +26,7 @@ class User implements UserInterface
         return $this->telegramToken;
     }
 
-    public function setId(Id $id): UserInterface
+    public function setId(IdInterface $id): UserInterface
     {
         $this->id = $id;
         return $this;

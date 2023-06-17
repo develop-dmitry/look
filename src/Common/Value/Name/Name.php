@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Look\Common\Value\Name;
 
 use Look\Common\Exception\InvalidValueException;
-use Look\Common\Value\Name\Contract\Name as NameContract;
+use Look\Common\Value\Name\Contract\NameInterface;
 
-class Name implements NameContract
+class Name implements NameInterface
 {
     protected string $value;
 

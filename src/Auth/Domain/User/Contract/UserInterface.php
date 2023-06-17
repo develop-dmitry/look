@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace Look\Auth\Domain\User\Contract;
 
 use Look\Auth\Domain\User\Value\TelegramToken;
-use Look\Common\Value\Id\Contract\Id;
+use Look\Common\Value\Id\Contract\IdInterface;
 
 interface UserInterface
 {
     /**
-     * @param Id $id
+     * @param IdInterface $id
      * @return self
      */
-    public function setId(Id $id): self;
+    public function setId(IdInterface $id): self;
 
     /**
-     * @return Id|null
+     * @return IdInterface|null
      */
-    public function getId(): ?Id;
+    public function getId(): ?IdInterface;
 
     /**
      * @return TelegramToken|null

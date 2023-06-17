@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Look\Common\Value\Id\Contract;
 
-interface Id
+interface IdInterface
 {
     /**
      * @return int

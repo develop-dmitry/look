@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Look\Common\Value\Photo;
 
 use Look\Common\Exception\InvalidValueException;
-use Look\Common\Value\Photo\Contract\Photo as PhotoContract;
+use Look\Common\Value\Photo\Contract\PhotoInterface;
 
-class Photo implements PhotoContract
+class Photo implements PhotoInterface
 {
     protected string $stub = '';
 

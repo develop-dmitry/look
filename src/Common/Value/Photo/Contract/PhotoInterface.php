@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Look\Common\Value\Name\Contract;
+namespace Look\Common\Value\Photo\Contract;
 
-interface Name
+interface PhotoInterface
 {
     /**
      * @return string

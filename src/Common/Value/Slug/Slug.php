@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Look\Common\Value\Slug;
 
 use Look\Common\Exception\InvalidValueException;
-use Look\Common\Value\Slug\Contract\Slug as SlugContract;
+use Look\Common\Value\Slug\Contract\SlugInterface;
 
-class Slug implements SlugContract
+class Slug implements SlugInterface
 {
     protected int $maxLength = 100;
 
