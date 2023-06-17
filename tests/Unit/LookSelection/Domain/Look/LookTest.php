@@ -50,9 +50,7 @@ class LookTest extends TestCase
         $this->weather = new Weather(
             new Temperature(-10),
             new Temperature(10),
-            new Temperature(0),
-            WeatherPeriod::Morning,
-            new DateTime()
+            new Temperature(0)
         );
         $this->styles = [
             new Style(new Name('Тест'), new Slug('test')),
@@ -151,8 +149,6 @@ class LookTest extends TestCase
 
         $weather = $look->getWeather();
 
-        $this->assertEquals($this->weather->getPeriod(), $weather->getPeriod());
-        $this->assertEquals($this->weather->getDate()->format('Y-m-d'), $weather->getDate()->format('Y-m-d'));
         $this->assertEquals($this->weather->getMinTemperature()->getValue(), $weather->getMinTemperature()->getValue());
         $this->assertEquals($this->weather->getMaxTemperature()->getValue(), $weather->getMaxTemperature()->getValue());
         $this->assertEquals(

@@ -30,17 +30,13 @@ class WeatherForecastTest extends TestCase
         $this->weather = new Weather(
             new Temperature(-15),
             new Temperature(0),
-            new Temperature(-10),
-            WeatherPeriod::Day,
-            $this->date
+            new Temperature(-10)
         );
 
         $this->secondWeather = new Weather(
             new Temperature(-10),
             new Temperature(5),
-            new Temperature(0),
-            WeatherPeriod::Day,
-            $this->date
+            new Temperature(0)
         );
     }
 

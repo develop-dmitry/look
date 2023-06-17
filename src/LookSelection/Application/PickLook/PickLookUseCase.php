@@ -103,8 +103,6 @@ class PickLookUseCase implements PickLookInterface
             new Temperature($minTemperature),
             new Temperature($maxTemperature),
             new Temperature($average),
-            WeatherPeriod::Morning,
-            new \DateTime()
         );
     }
 }

@@ -41,16 +41,12 @@ class PickLookTest extends TestCase
         $weatherOne = new Weather(
             new Temperature(-10),
             new Temperature(10),
-            new Temperature(0),
-            WeatherPeriod::Morning,
-            new \DateTime()
+            new Temperature(0)
         );
         $weatherTwo = new Weather(
             new Temperature(0),
             new Temperature(15),
-            new Temperature(7),
-            WeatherPeriod::Evening,
-            new \DateTime()
+            new Temperature(7)
         );
 
         $clothesOne = new Clothes(

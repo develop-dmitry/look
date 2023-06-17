@@ -32,9 +32,7 @@ class NearestWeatherTest extends TestCase
             new Weather(
                 new Temperature(-5),
                 new Temperature(10),
-                new Temperature(8),
-                WeatherPeriod::Evening,
-                $this->date
+                new Temperature(8)
             ),
             $this->date,
             WeatherPeriod::Evening
@@ -44,9 +42,7 @@ class NearestWeatherTest extends TestCase
             new Weather(
                 new Temperature(-9),
                 new Temperature(15),
-                new Temperature(7),
-                WeatherPeriod::Day,
-                $this->date
+                new Temperature(7)
             ),
             $this->date,
             WeatherPeriod::Day

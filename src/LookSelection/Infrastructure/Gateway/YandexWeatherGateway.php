@@ -65,9 +65,7 @@ class YandexWeatherGateway implements WeatherGatewayInterface
                     new Weather(
                         new Temperature($part['temp_min']),
                         new Temperature($part['temp_max']),
-                        new Temperature($part['temp_avg']),
-                        $period,
-                        $date
+                        new Temperature($part['temp_avg'])
                     ),
                     $date,
                     $period

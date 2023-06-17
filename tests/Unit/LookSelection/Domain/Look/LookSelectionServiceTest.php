@@ -52,9 +52,7 @@ class LookSelectionServiceTest extends TestCase
         $this->weather = new Weather(
             new Temperature(-10),
             new Temperature(10),
-            new Temperature(0),
-            WeatherPeriod::Morning,
-            new DateTime()
+            new Temperature(0)
         );
 
         $this->casualStyle = new Style(new Name('Casual'), new Slug('casual'));
