@@ -4,7 +4,7 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Look\Auth\Domain\User\Contract\UserRepository;
+use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
 use Look\Auth\Infrastructure\Repository\EloquentUserRepository;
 
 class AuthServiceProvider extends ServiceProvider
@@ -20,7 +20,7 @@ class AuthServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->app->bind(UserRepository::class, EloquentUserRepository::class);
+        $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
     }
 
     /**

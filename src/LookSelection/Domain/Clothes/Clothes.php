@@ -4,47 +4,47 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\Clothes;
 
-use Look\Common\Value\Id\Contract\Id;
-use Look\Common\Value\Name\Contract\Name;
-use Look\Common\Value\Photo\Contract\Photo;
-use Look\Common\Value\Slug\Contract\Slug;
-use Look\LookSelection\Domain\Clothes\Contract\Clothes as ClothesContract;
-use Look\LookSelection\Domain\Style\Contract\Style;
+use Look\Common\Value\Id\IdInterface;
+use Look\Common\Value\Name\NameInterface;
+use Look\Common\Value\Photo\PhotoInterface;
+use Look\Common\Value\Slug\SlugInterface;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesInterface;
+use Look\LookSelection\Domain\Style\Contract\StyleInterface;
 
-class Clothes implements ClothesContract
+class Clothes implements ClothesInterface
 {
     /**
-     * @param Id $id
-     * @param Name $name
-     * @param Slug $slug
-     * @param Photo $photo
-     * @param Style[] $styles
+     * @param IdInterface $id
+     * @param NameInterface $name
+     * @param SlugInterface $slug
+     * @param PhotoInterface $photo
+     * @param StyleInterface[] $styles
      */
     public function __construct(
-        protected Id $id,
-        protected Name $name,
-        protected Slug $slug,
-        protected Photo $photo,
-        protected array $styles
+        protected IdInterface    $id,
+        protected NameInterface  $name,
+        protected SlugInterface  $slug,
+        protected PhotoInterface $photo,
+        protected array          $styles
     ) {
     }
 
-    public function getId(): Id
+    public function getId(): IdInterface
     {
         return $this->id;
     }
 
-    public function getName(): Name
+    public function getName(): NameInterface
     {
         return $this->name;
     }
 
-    public function getSlug(): Slug
+    public function getSlug(): SlugInterface
     {
         return $this->slug;
     }
 
-    public function getPhoto(): Photo
+    public function getPhoto(): PhotoInterface
     {
         return $this->photo;
     }

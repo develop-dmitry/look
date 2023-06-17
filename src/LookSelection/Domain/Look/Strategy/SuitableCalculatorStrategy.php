@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\Look\Strategy;
 
-use Look\LookSelection\Domain\Clothes\Contract\Clothes;
-use Look\LookSelection\Domain\Look\Contract\Look;
-use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategy as SuitableCalculatorStrategyContract;
-use Look\LookSelection\Domain\Style\Contract\Style;
-use Look\LookSelection\Domain\User\Contract\User;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesInterface;
+use Look\LookSelection\Domain\Look\Contract\LookInterface;
+use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategyInterface as SuitableCalculatorStrategyContract;
+use Look\LookSelection\Domain\Style\Contract\StyleInterface;
+use Look\LookSelection\Domain\User\Contract\UserInterface;
 
 class SuitableCalculatorStrategy implements SuitableCalculatorStrategyContract
 {
@@ -20,11 +20,11 @@ class SuitableCalculatorStrategy implements SuitableCalculatorStrategyContract
         'style' => 3
     ];
 
-    protected Look $look;
+    protected LookInterface $look;
 
-    protected User $user;
+    protected UserInterface $user;
 
-    public function execute(Look $look, User $user): float
+    public function execute(LookInterface $look, UserInterface $user): float
     {
         $this->user = $user;
         $this->look = $look;
@@ -70,8 +70,8 @@ class SuitableCalculatorStrategy implements SuitableCalculatorStrategyContract
 
     protected function calculateStyleScore(): float
     {
-        $userStyles = array_map(static fn (Style $style) => $style->getSlug()->getValue(), $this->user->getStyles());
-        $lookStyles = array_map(static fn (Style $style) => $style->getSlug()->getValue(), $this->look->getStyles());
+        $userStyles = array_map(static fn (StyleInterface $style) => $style->getSlug()->getValue(), $this->user->getStyles());
+        $lookStyles = array_map(static fn (StyleInterface $style) => $style->getSlug()->getValue(), $this->look->getStyles());
         $suitableStyles = array_intersect($userStyles, $lookStyles);
 
         return count($suitableStyles) / count($lookStyles) * 100;
@@ -79,8 +79,8 @@ class SuitableCalculatorStrategy implements SuitableCalculatorStrategyContract
 
     protected function calculateClothesScore(): float
     {
-        $userClothesMapper = static fn (Clothes $clothes) => $clothes->getId()->getValue();
-        $lookClothesMapper = static fn (Clothes $clothes) => $clothes->getId()->getValue();
+        $userClothesMapper = static fn (ClothesInterface $clothes) => $clothes->getId()->getValue();
+        $lookClothesMapper = static fn (ClothesInterface $clothes) => $clothes->getId()->getValue();
 
         $userClothes = array_map($userClothesMapper, $this->user->getClothes());
         $lookClothes = array_map($lookClothesMapper, $this->look->getClothes());

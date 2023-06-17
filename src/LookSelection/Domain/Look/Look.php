@@ -4,62 +4,61 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\Look;
 
-use Look\Common\Exception\InvalidValueException;
-use Look\Common\Value\Id\Contract\Id;
-use Look\Common\Value\Name\Contract\Name;
-use Look\Common\Value\Photo\Contract\Photo;
-use Look\Common\Value\Slug\Contract\Slug;
-use Look\LookSelection\Domain\Clothes\Contract\Clothes;
-use Look\LookSelection\Domain\Event\Contract\Event;
-use Look\LookSelection\Domain\Look\Contract\Look as LookContract;
-use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategy;
-use Look\LookSelection\Domain\User\Contract\User;
-use Look\LookSelection\Domain\Weather\Contract\Weather;
+use Look\Common\Value\Id\IdInterface;
+use Look\Common\Value\Name\NameInterface;
 use Look\Common\Value\Percent\Percent;
+use Look\Common\Value\Photo\PhotoInterface;
+use Look\Common\Value\Slug\SlugInterface;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesInterface;
+use Look\LookSelection\Domain\Event\Contract\EventInterface;
+use Look\LookSelection\Domain\Look\Contract\LookInterface;
+use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategyInterface;
+use Look\LookSelection\Domain\User\Contract\UserInterface;
+use Look\LookSelection\Domain\Weather\Contract\WeatherInterface;
 
-class Look implements LookContract
+class Look implements LookInterface
 {
     /**
-     * @param Id $id
-     * @param Name $name
-     * @param Photo $photo
-     * @param Slug $slug
-     * @param Weather $weather
-     * @param Clothes[] $clothes
-     * @param Event[] $events
+     * @param IdInterface $id
+     * @param NameInterface $name
+     * @param PhotoInterface $photo
+     * @param SlugInterface $slug
+     * @param WeatherInterface $weather
+     * @param ClothesInterface[] $clothes
+     * @param EventInterface[] $events
      */
     public function __construct(
-        protected Id $id,
-        protected Name $name,
-        protected Photo $photo,
-        protected Slug $slug,
-        protected Weather $weather,
-        protected array $clothes,
-        protected array $events
+        protected IdInterface      $id,
+        protected NameInterface    $name,
+        protected PhotoInterface   $photo,
+        protected SlugInterface    $slug,
+        protected WeatherInterface $weather,
+        protected array            $clothes,
+        protected array            $events
     ) {
     }
 
-    public function getId(): Id
+    public function getId(): IdInterface
     {
         return $this->id;
     }
 
-    public function getName(): Name
+    public function getName(): NameInterface
     {
         return $this->name;
     }
 
-    public function getPhoto(): Photo
+    public function getPhoto(): PhotoInterface
     {
         return $this->photo;
     }
 
-    public function getSlug(): Slug
+    public function getSlug(): SlugInterface
     {
         return $this->slug;
     }
 
-    public function getWeather(): Weather
+    public function getWeather(): WeatherInterface
     {
         return $this->weather;
     }
@@ -89,18 +88,16 @@ class Look implements LookContract
         return array_values($styles);
     }
 
-    public function getSuitableScore(SuitableCalculatorStrategy $calculatorStrategy, User $user): Percent
-    {
+    public function getSuitableScore(
+        SuitableCalculatorStrategyInterface $calculatorStrategy,
+        UserInterface $user
+    ): Percent {
         $suitableScore = $calculatorStrategy->execute($this, $user);
 
         if ($suitableScore > 100) {
             $suitableScore = 100;
         }
 
-        try {
-            return new Percent($suitableScore);
-        } catch (InvalidValueException) {
-            return new Percent(0);
-        }
+        return new Percent($suitableScore);
     }
 }

@@ -8,26 +8,25 @@ use DateTime;
 use Look\LookSelection\Application\NearestWeather\Contract\NearestWeather;
 use Look\LookSelection\Application\NearestWeather\DTO\NearestWeatherRequest;
 use Look\LookSelection\Application\NearestWeather\DTO\NearestWeatherResponse;
-use Look\LookSelection\Domain\Weather\Contract\WeatherGateway;
+use Look\LookSelection\Domain\Weather\Contract\WeatherGatewayInterface;
 use Look\LookSelection\Domain\Weather\Exception\FailedGetWeatherException;
 
 class NearestWeatherUseCase implements NearestWeather
 {
     public function __construct(
-        protected WeatherGateway $weatherGateway
+        protected WeatherGatewayInterface $weatherGateway
     ) {
     }
 
     public function execute(NearestWeatherRequest $request): NearestWeatherResponse
     {
         $weatherContainer = $this->weatherGateway->getWeather($request->getLat(), $request->getLon());
-        $currentDate = new DateTime();
+        $currentDateWeather = $weatherContainer->forDay(new DateTime());
 
-        if (!$weatherContainer->hasWeatherForDate($currentDate)) {
+        if (empty($currentDateWeather)) {
             throw new FailedGetWeatherException();
         }
 
-        $currentDateWeather = $weatherContainer->getWeatherForDate($currentDate);
         $currentWeather = current($currentDateWeather);
 
         return new NearestWeatherResponse(

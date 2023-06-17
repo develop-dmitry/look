@@ -10,15 +10,15 @@ use Look\Common\Value\Id\NullId;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Photo\Photo;
 use Look\Common\Value\Slug\Slug;
+use Look\Common\Value\Temperature\Temperature;
 use Look\LookSelection\Domain\Clothes\Clothes;
 use Look\LookSelection\Domain\Event\Event;
-use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategy;
+use Look\LookSelection\Domain\Look\Contract\SuitableCalculatorStrategyInterface;
 use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\Style\Style;
 use Look\LookSelection\Domain\User\User;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Weather;
+use Look\LookSelection\Domain\Weather\WeatherPeriod;
 use Tests\TestCase;
 
 class LookTest extends TestCase
@@ -50,9 +50,7 @@ class LookTest extends TestCase
         $this->weather = new Weather(
             new Temperature(-10),
             new Temperature(10),
-            new Temperature(0),
-            WeatherPeriod::Morning,
-            new DateTime()
+            new Temperature(0)
         );
         $this->styles = [
             new Style(new Name('Тест'), new Slug('test')),
@@ -151,8 +149,6 @@ class LookTest extends TestCase
 
         $weather = $look->getWeather();
 
-        $this->assertEquals($this->weather->getPeriod(), $weather->getPeriod());
-        $this->assertEquals($this->weather->getDate()->format('Y-m-d'), $weather->getDate()->format('Y-m-d'));
         $this->assertEquals($this->weather->getMinTemperature()->getValue(), $weather->getMinTemperature()->getValue());
         $this->assertEquals($this->weather->getMaxTemperature()->getValue(), $weather->getMaxTemperature()->getValue());
         $this->assertEquals(
@@ -306,7 +302,7 @@ class LookTest extends TestCase
         );
         $user = new User(new NullId(), [$casual, $minimal], [$shirt, $sneakers, $cap]);
 
-        $suitableScore = $look->getSuitableScore($this->app->make(SuitableCalculatorStrategy::class), $user);
+        $suitableScore = $look->getSuitableScore($this->app->make(SuitableCalculatorStrategyInterface::class), $user);
 
         $this->assertEquals(67.5, $suitableScore->getValue());
     }

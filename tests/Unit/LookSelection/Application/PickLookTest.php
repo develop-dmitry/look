@@ -8,18 +8,18 @@ use Look\Common\Value\Id\Id;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Photo\Photo;
 use Look\Common\Value\Slug\Slug;
+use Look\Common\Value\Temperature\Temperature;
 use Look\LookSelection\Application\PickLook\DTO\PickLookRequest;
 use Look\LookSelection\Application\PickLook\PickLookUseCase;
 use Look\LookSelection\Domain\Clothes\Clothes;
-use Look\LookSelection\Domain\Event\Contract\EventRepository;
+use Look\LookSelection\Domain\Event\Contract\EventRepositoryInterface;
 use Look\LookSelection\Domain\Event\Event;
-use Look\LookSelection\Domain\Look\Contract\LookSelectionService;
+use Look\LookSelection\Domain\Look\Contract\LookSelectionServiceInterface;
 use Look\LookSelection\Domain\Look\Look;
-use Look\LookSelection\Domain\User\Contract\UserRepository;
+use Look\LookSelection\Domain\User\Contract\UserRepositoryInterface;
 use Look\LookSelection\Domain\User\User;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Weather;
+use Look\LookSelection\Domain\Weather\WeatherPeriod;
 use Psr\Log\LoggerInterface;
 use Tests\TestCase;
 
@@ -41,16 +41,12 @@ class PickLookTest extends TestCase
         $weatherOne = new Weather(
             new Temperature(-10),
             new Temperature(10),
-            new Temperature(0),
-            WeatherPeriod::Morning,
-            new \DateTime()
+            new Temperature(0)
         );
         $weatherTwo = new Weather(
             new Temperature(0),
             new Temperature(15),
-            new Temperature(7),
-            WeatherPeriod::Evening,
-            new \DateTime()
+            new Temperature(7)
         );
 
         $clothesOne = new Clothes(
@@ -95,11 +91,11 @@ class PickLookTest extends TestCase
 
     public function testPickLookResponseIsEmpty(): void
     {
-        $userRepository = $this->getMockBuilder(UserRepository::class)->getMock();
+        $userRepository = $this->getMockBuilder(UserRepositoryInterface::class)->getMock();
         $userRepository->method('getById')->willReturn($this->user);
-        $eventRepository = $this->getMockBuilder(EventRepository::class)->getMock();
+        $eventRepository = $this->getMockBuilder(EventRepositoryInterface::class)->getMock();
         $eventRepository->method('getById')->willReturn($this->event);
-        $lookSelection = $this->getMockBuilder(LookSelectionService::class)->getMock();
+        $lookSelection = $this->getMockBuilder(LookSelectionServiceInterface::class)->getMock();
         $lookSelection->method('pickLook')->willReturn([]);
 
         $pickLook = new PickLookUseCase(
@@ -116,11 +112,11 @@ class PickLookTest extends TestCase
 
     public function testPickLookResponseNotEmpty(): void
     {
-        $userRepository = $this->getMockBuilder(UserRepository::class)->getMock();
+        $userRepository = $this->getMockBuilder(UserRepositoryInterface::class)->getMock();
         $userRepository->method('getById')->willReturn($this->user);
-        $eventRepository = $this->getMockBuilder(EventRepository::class)->getMock();
+        $eventRepository = $this->getMockBuilder(EventRepositoryInterface::class)->getMock();
         $eventRepository->method('getById')->willReturn($this->event);
-        $lookSelection = $this->getMockBuilder(LookSelectionService::class)->getMock();
+        $lookSelection = $this->getMockBuilder(LookSelectionServiceInterface::class)->getMock();
         $lookSelection->method('pickLook')->willReturn($this->looks);
 
         $pickLook = new PickLookUseCase(
@@ -137,11 +133,11 @@ class PickLookTest extends TestCase
 
     public function testPickLookResponseArrayStructure(): void
     {
-        $userRepository = $this->getMockBuilder(UserRepository::class)->getMock();
+        $userRepository = $this->getMockBuilder(UserRepositoryInterface::class)->getMock();
         $userRepository->method('getById')->willReturn($this->user);
-        $eventRepository = $this->getMockBuilder(EventRepository::class)->getMock();
+        $eventRepository = $this->getMockBuilder(EventRepositoryInterface::class)->getMock();
         $eventRepository->method('getById')->willReturn($this->event);
-        $lookSelection = $this->getMockBuilder(LookSelectionService::class)->getMock();
+        $lookSelection = $this->getMockBuilder(LookSelectionServiceInterface::class)->getMock();
         $lookSelection->method('pickLook')->willReturn($this->looks);
 
         $pickLook = new PickLookUseCase(

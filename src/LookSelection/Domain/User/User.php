@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\User;
 
-use Look\Common\Value\Id\Contract\Id;
-use Look\LookSelection\Domain\User\Contract\User as UserContract;
+use Look\Common\Value\Id\IdInterface;
+use Look\LookSelection\Domain\User\Contract\UserInterface;
 
-class User implements UserContract
+class User implements UserInterface
 {
     public function __construct(
-        protected Id $id,
-        protected array $styles,
-        protected array $clothes
+        protected IdInterface $id,
+        protected array       $styles,
+        protected array       $clothes
     ) {
     }
 
-    public function getId(): Id
+    public function getId(): IdInterface
     {
         return $this->id;
     }

@@ -8,11 +8,11 @@ use App\Models\Style as StyleModel;
 use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
-use Look\LookSelection\Domain\Style\Contract\StyleRepository;
+use Look\LookSelection\Domain\Style\Contract\StyleRepositoryInterface;
 use Look\LookSelection\Domain\Style\Style;
 use Psr\Log\LoggerInterface;
 
-class EloquentStyleRepository implements StyleRepository
+class EloquentStyleRepository implements StyleRepositoryInterface
 {
     public function __construct(
         protected LoggerInterface $logger

@@ -8,12 +8,12 @@ use App\Models\Event as EventModel;
 use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
-use Look\LookSelection\Domain\Event\Contract\EventRepository;
+use Look\LookSelection\Domain\Event\Contract\EventRepositoryInterface;
 use Look\LookSelection\Domain\Event\Event;
 use Look\LookSelection\Domain\Event\Exception\EventNotFoundException;
 use Psr\Log\LoggerInterface;
 
-class EloquentEventRepository implements EventRepository
+class EloquentEventRepository implements EventRepositoryInterface
 {
     public function __construct(
         protected LoggerInterface $logger

@@ -5,31 +5,31 @@ declare(strict_types=1);
 namespace Look\LookSelection\Application\PickLook;
 
 use Look\Common\Exception\InvalidValueException;
+use Look\Common\Value\Temperature\Temperature;
 use Look\LookSelection\Application\PickLook\Contract\PickLookInterface;
 use Look\LookSelection\Application\PickLook\DTO\PickLookRequest;
 use Look\LookSelection\Application\PickLook\DTO\PickLookResponse;
 use Look\LookSelection\Application\PickLook\Exception\PickLookFailedException;
-use Look\LookSelection\Domain\Clothes\Contract\Clothes;
-use Look\LookSelection\Domain\Event\Contract\Event;
-use Look\LookSelection\Domain\Event\Contract\EventRepository;
+use Look\LookSelection\Domain\Clothes\Contract\ClothesInterface;
+use Look\LookSelection\Domain\Event\Contract\EventInterface;
+use Look\LookSelection\Domain\Event\Contract\EventRepositoryInterface;
 use Look\LookSelection\Domain\Event\Exception\EventNotFoundException;
-use Look\LookSelection\Domain\Look\Contract\LookSelectionService;
-use Look\LookSelection\Domain\User\Contract\User;
-use Look\LookSelection\Domain\User\Contract\UserRepository;
+use Look\LookSelection\Domain\Look\Contract\LookSelectionServiceInterface;
+use Look\LookSelection\Domain\User\Contract\UserInterface;
+use Look\LookSelection\Domain\User\Contract\UserRepositoryInterface;
 use Look\LookSelection\Domain\User\Exception\UserNotFoundException;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
-use Look\LookSelection\Domain\Weather\Contract\Weather as WeatherInterface;
+use Look\LookSelection\Domain\Weather\Contract\WeatherInterface;
+use Look\LookSelection\Domain\Weather\Weather;
+use Look\LookSelection\Domain\Weather\WeatherPeriod;
 use Psr\Log\LoggerInterface;
 
 class PickLookUseCase implements PickLookInterface
 {
     public function __construct(
-        protected LookSelectionService $lookSelectionService,
-        protected UserRepository $userRepository,
-        protected EventRepository $eventRepository,
-        protected LoggerInterface $logger
+        protected LookSelectionServiceInterface $lookSelectionService,
+        protected UserRepositoryInterface       $userRepository,
+        protected EventRepositoryInterface      $eventRepository,
+        protected LoggerInterface               $logger
     ) {
     }
 
@@ -53,15 +53,15 @@ class PickLookUseCase implements PickLookInterface
         }
     }
 
-    protected function getLooks(User $user, Event $event, WeatherInterface $weather): array
+    protected function getLooks(UserInterface $user, EventInterface $event, WeatherInterface $weather): array
     {
         $looks = $this->lookSelectionService->pickLook($user, $event, $weather);
 
         $result = [];
 
         foreach ($looks as $look) {
-            $events = array_map(static fn (Event $event) => $event->getSlug(), $look->getEvents());
-            $clothes = array_map(static fn (Clothes $clothes) => $clothes->getSlug(), $look->getClothes());
+            $events = array_map(static fn (EventInterface $event) => $event->getSlug(), $look->getEvents());
+            $clothes = array_map(static fn (ClothesInterface $clothes) => $clothes->getSlug(), $look->getClothes());
 
             $result[] = [
                 'id' => $look->getId(),
@@ -79,7 +79,7 @@ class PickLookUseCase implements PickLookInterface
     /**
      * @throws UserNotFoundException
      */
-    protected function getUser(int $userId): User
+    protected function getUser(int $userId): UserInterface
     {
         return $this->userRepository->getById($userId);
     }
@@ -87,7 +87,7 @@ class PickLookUseCase implements PickLookInterface
     /**
      * @throws EventNotFoundException
      */
-    protected function getEvent(int $eventId): Event
+    protected function getEvent(int $eventId): EventInterface
     {
         return $this->eventRepository->getById($eventId);
     }
@@ -103,8 +103,6 @@ class PickLookUseCase implements PickLookInterface
             new Temperature($minTemperature),
             new Temperature($maxTemperature),
             new Temperature($average),
-            WeatherPeriod::Morning,
-            new \DateTime()
         );
     }
 }

@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Look\Common\Value\Percent;
 
 use Look\Common\Exception\InvalidValueException;
-use Look\Common\Value\Percent\Contact\Percent as PercentContract;
 
-class Percent implements PercentContract
+class Percent implements PercentInterface
 {
     protected float $value;
 

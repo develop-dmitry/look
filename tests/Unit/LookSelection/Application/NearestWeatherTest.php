@@ -6,18 +6,18 @@ namespace Tests\Unit\LookSelection\Application;
 
 use DateTime;
 use DateTimeInterface;
+use Look\Common\Value\Temperature\Temperature;
 use Look\LookSelection\Application\NearestWeather\DTO\NearestWeatherRequest;
 use Look\LookSelection\Application\NearestWeather\NearestWeatherUseCase;
-use Look\LookSelection\Domain\Weather\Container\WeatherContainer;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Contract\WeatherGateway;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\WeatherForecast;
+use Look\LookSelection\Domain\Weather\Contract\WeatherGatewayInterface;
+use Look\LookSelection\Domain\Weather\Weather;
+use Look\LookSelection\Domain\Weather\WeatherPeriod;
 use Tests\TestCase;
 
 class NearestWeatherTest extends TestCase
 {
-    protected WeatherContainer $weatherContainer;
+    protected WeatherForecast $weatherForecast;
 
     protected DateTimeInterface $date;
 
@@ -26,35 +26,39 @@ class NearestWeatherTest extends TestCase
         parent::setUp();
 
         $this->date = new DateTime();
-        $this->weatherContainer = new WeatherContainer();
+        $this->weatherForecast = new WeatherForecast();
 
-        $this->weatherContainer->addWeather(new Weather(
-            new Temperature(-5),
-            new Temperature(10),
-            new Temperature(8),
-            WeatherPeriod::Evening,
-            $this->date
-        ));
+        $this->weatherForecast->addWeather(
+            new Weather(
+                new Temperature(-5),
+                new Temperature(10),
+                new Temperature(8)
+            ),
+            $this->date,
+            WeatherPeriod::Evening
+        );
 
-        $this->weatherContainer->addWeather(new Weather(
-            new Temperature(-9),
-            new Temperature(15),
-            new Temperature(7),
-            WeatherPeriod::Day,
-            $this->date
-        ));
+        $this->weatherForecast->addWeather(
+            new Weather(
+                new Temperature(-9),
+                new Temperature(15),
+                new Temperature(7)
+            ),
+            $this->date,
+            WeatherPeriod::Day
+        );
     }
 
     public function testNearestWeatherExecute(): void
     {
-        $weatherGateway = $this->getMockBuilder(WeatherGateway::class)->getMock();
+        $weatherGateway = $this->getMockBuilder(WeatherGatewayInterface::class)->getMock();
         $weatherGateway
             ->method('getWeather')
-            ->willReturn($this->weatherContainer);
+            ->willReturn($this->weatherForecast);
         $nearestWeatherUseCase = new NearestWeatherUseCase($weatherGateway);
 
         $nearestResponse = $nearestWeatherUseCase->execute(new NearestWeatherRequest(54, 37));
-        $nearestWeather = $this->weatherContainer->getWeather($this->date, WeatherPeriod::Day);
+        $nearestWeather = $this->weatherForecast->forDayPeriod($this->date, WeatherPeriod::Day);
 
         $this->assertEquals($nearestWeather->getMinTemperature()->getValue(), $nearestResponse->getMinTemperature());
         $this->assertEquals($nearestWeather->getMaxTemperature()->getValue(), $nearestResponse->getMaxTemperature());

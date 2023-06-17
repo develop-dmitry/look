@@ -9,15 +9,15 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Look\Common\Exception\InvalidValueException;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
-use Look\LookSelection\Domain\Weather\Contract\WeatherGateway as WeatherGatewayContact;
-use Look\LookSelection\Domain\Weather\Entity\Weather;
+use Look\Common\Value\Temperature\Temperature;
+use Look\LookSelection\Domain\Weather\Contract\WeatherGatewayInterface;
 use Look\LookSelection\Domain\Weather\Exception\FailedGetWeatherException;
-use Look\LookSelection\Domain\Weather\Value\Temperature;
+use Look\LookSelection\Domain\Weather\Weather;
+use Look\LookSelection\Domain\Weather\WeatherForecast;
+use Look\LookSelection\Domain\Weather\WeatherPeriod;
 use Psr\Log\LoggerInterface;
-use Look\LookSelection\Domain\Weather\Container\WeatherContainer;
 
-class YandexWeatherGateway implements WeatherGatewayContact
+class YandexWeatherGateway implements WeatherGatewayInterface
 {
     protected string $url = 'https://api.weather.yandex.ru/v2/informers';
 
@@ -27,7 +27,7 @@ class YandexWeatherGateway implements WeatherGatewayContact
     ) {
     }
 
-    public function getWeather(float $lat, float $lon): WeatherContainer
+    public function getWeather(float $lat, float $lon): WeatherForecast
     {
         $response = $this->executeRequest([
             'lat' => $lat,
@@ -40,12 +40,12 @@ class YandexWeatherGateway implements WeatherGatewayContact
 
         $data = $response->json();
 
-        return $this->makeWeatherContainer($data);
+        return $this->makeWeatherForecast($data);
     }
 
-    protected function makeWeatherContainer(array $data): WeatherContainer
+    protected function makeWeatherForecast(array $data): WeatherForecast
     {
-        $container = new WeatherContainer();
+        $container = new WeatherForecast();
 
         foreach ($data['forecast']['parts'] as $part) {
             try {
@@ -61,13 +61,15 @@ class YandexWeatherGateway implements WeatherGatewayContact
                     throw new InvalidValueException('Invalid period name');
                 }
 
-                $container->addWeather(new Weather(
-                    new Temperature($part['temp_min']),
-                    new Temperature($part['temp_max']),
-                    new Temperature($part['temp_avg']),
-                    $period,
-                    $date
-                ));
+                $container->addWeather(
+                    new Weather(
+                        new Temperature($part['temp_min']),
+                        new Temperature($part['temp_max']),
+                        new Temperature($part['temp_avg'])
+                    ),
+                    $date,
+                    $period
+                );
             } catch (InvalidValueException $exception) {
                 $this->logger->debug('Failed to make weather object', [
                     'data' => $part,

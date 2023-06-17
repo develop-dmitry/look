@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\Event;
 
-use Look\Common\Value\Name\Contract\Name;
-use Look\Common\Value\Slug\Contract\Slug;
-use Look\LookSelection\Domain\Event\Contract\Event as EventContract;
+use Look\Common\Value\Name\NameInterface;
+use Look\Common\Value\Slug\SlugInterface;
+use Look\LookSelection\Domain\Event\Contract\EventInterface;
 
-class Event implements EventContract
+class Event implements EventInterface
 {
     public function __construct(
-        protected Name $name,
-        protected Slug $slug
+        protected NameInterface $name,
+        protected SlugInterface $slug
     ) {
     }
 
-    public function getName(): Name
+    public function getName(): NameInterface
     {
         return $this->name;
     }
 
-    public function getSlug(): Slug
+    public function getSlug(): SlugInterface
     {
         return $this->slug;
     }
