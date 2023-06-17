@@ -62,5 +62,8 @@ interface LookInterface
      * @param UserInterface $user
      * @return PercentInterface
      */
-    public function getSuitableScore(SuitableCalculatorStrategyInterface $calculatorStrategy, UserInterface $user): PercentInterface;
+    public function getSuitableScore(
+        SuitableCalculatorStrategyInterface $calculatorStrategy,
+        UserInterface $user
+    ): PercentInterface;
 }

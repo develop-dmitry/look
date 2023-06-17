@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\Look;
 
-use Look\Common\Exception\InvalidValueException;
 use Look\Common\Value\Id\IdInterface;
 use Look\Common\Value\Name\NameInterface;
 use Look\Common\Value\Percent\Percent;
@@ -89,18 +88,16 @@ class Look implements LookInterface
         return array_values($styles);
     }
 
-    public function getSuitableScore(SuitableCalculatorStrategyInterface $calculatorStrategy, UserInterface $user): Percent
-    {
+    public function getSuitableScore(
+        SuitableCalculatorStrategyInterface $calculatorStrategy,
+        UserInterface $user
+    ): Percent {
         $suitableScore = $calculatorStrategy->execute($this, $user);
 
         if ($suitableScore > 100) {
             $suitableScore = 100;
         }
 
-        try {
-            return new Percent($suitableScore);
-        } catch (InvalidValueException) {
-            return new Percent(0);
-        }
+        return new Percent($suitableScore);
     }
 }
