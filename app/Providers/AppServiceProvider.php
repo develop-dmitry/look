@@ -12,10 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app
-            ->when(YandexWeatherGateway::class)
-            ->needs('$token')
-            ->give(config('weather.yandex_token'));
+        //
     }
 
     /**
