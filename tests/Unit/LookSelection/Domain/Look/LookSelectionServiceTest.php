@@ -19,8 +19,8 @@ use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\Look\Service\LookSelectionService;
 use Look\LookSelection\Domain\Style\Style;
 use Look\LookSelection\Domain\User\User;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
 use Look\LookSelection\Domain\Weather\Weather;
+use Look\LookSelection\Domain\Weather\WeatherPeriod;
 use Tests\TestCase;
 
 class LookSelectionServiceTest extends TestCase

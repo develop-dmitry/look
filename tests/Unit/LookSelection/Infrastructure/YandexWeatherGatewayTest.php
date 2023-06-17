@@ -31,8 +31,8 @@ class YandexWeatherGatewayTest extends TestCase
     public function testYandexWeatherThatReturnNotEmptyResponse(): void
     {
         $weatherGateway = $this->app->make(YandexWeatherGateway::class);
-        $weatherContainer = $weatherGateway->getWeather($this->lat, $this->lon);
+        $weatherForecast = $weatherGateway->getWeather($this->lat, $this->lon);
 
-        $this->assertNotEmpty($weatherContainer->getWeatherForDate(new DateTime()));
+        $this->assertNotEmpty($weatherForecast->forDay(new DateTime()));
     }
 }

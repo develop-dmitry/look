@@ -18,9 +18,9 @@ use Look\LookSelection\Domain\Look\Contract\LookSelectionServiceInterface;
 use Look\LookSelection\Domain\User\Contract\UserInterface;
 use Look\LookSelection\Domain\User\Contract\UserRepositoryInterface;
 use Look\LookSelection\Domain\User\Exception\UserNotFoundException;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
 use Look\LookSelection\Domain\Weather\Contract\WeatherInterface;
 use Look\LookSelection\Domain\Weather\Weather;
+use Look\LookSelection\Domain\Weather\WeatherPeriod;
 use Psr\Log\LoggerInterface;
 
 class PickLookUseCase implements PickLookInterface

@@ -21,13 +21,12 @@ class NearestWeatherUseCase implements NearestWeather
     public function execute(NearestWeatherRequest $request): NearestWeatherResponse
     {
         $weatherContainer = $this->weatherGateway->getWeather($request->getLat(), $request->getLon());
-        $currentDate = new DateTime();
+        $currentDateWeather = $weatherContainer->forDay(new DateTime());
 
-        if (!$weatherContainer->hasWeatherForDate($currentDate)) {
+        if (empty($currentDateWeather)) {
             throw new FailedGetWeatherException();
         }
 
-        $currentDateWeather = $weatherContainer->getWeatherForDate($currentDate);
         $currentWeather = current($currentDateWeather);
 
         return new NearestWeatherResponse(

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Look\LookSelection\Domain\Weather\Container;
+namespace Look\LookSelection\Domain\Weather;
 
 enum WeatherPeriod: string
 {

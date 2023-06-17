@@ -18,8 +18,8 @@ use Look\LookSelection\Domain\Look\Contract\LookSelectionServiceInterface;
 use Look\LookSelection\Domain\Look\Look;
 use Look\LookSelection\Domain\User\Contract\UserRepositoryInterface;
 use Look\LookSelection\Domain\User\User;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
 use Look\LookSelection\Domain\Weather\Weather;
+use Look\LookSelection\Domain\Weather\WeatherPeriod;
 use Psr\Log\LoggerInterface;
 use Tests\TestCase;
 

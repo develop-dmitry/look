@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\Weather\Contract;
 
-use DateTimeInterface;
 use Look\LookSelection\Domain\Weather\Exception\FailedGetWeatherException;
 
 interface WeatherGatewayInterface
@@ -12,8 +11,8 @@ interface WeatherGatewayInterface
     /**
      * @param float $lat
      * @param float $lon
-     * @return WeatherContainerInterface
+     * @return WeatherForecastInterface
      * @throws FailedGetWeatherException
      */
-    public function getWeather(float $lat, float $lon): WeatherContainerInterface;
+    public function getWeather(float $lat, float $lon): WeatherForecastInterface;
 }

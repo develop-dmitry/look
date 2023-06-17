@@ -6,7 +6,7 @@ namespace Look\LookSelection\Domain\Weather\Contract;
 
 use DateTimeInterface;
 use Look\Common\Value\Temperature\TemperatureInterface;
-use Look\LookSelection\Domain\Weather\Container\WeatherPeriod;
+use Look\LookSelection\Domain\Weather\WeatherPeriod;
 
 interface WeatherInterface
 {
