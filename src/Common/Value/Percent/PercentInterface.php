@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Look\Common\Value\Percent\Contact;
+namespace Look\Common\Value\Percent;
 
 interface PercentInterface
 {

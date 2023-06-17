@@ -6,7 +6,7 @@ namespace Look\Auth\Domain\User;
 
 use Look\Auth\Domain\User\Contract\UserInterface;
 use Look\Auth\Domain\User\Value\TelegramToken;
-use Look\Common\Value\Id\Contract\IdInterface;
+use Look\Common\Value\Id\IdInterface;
 
 class User implements UserInterface
 {

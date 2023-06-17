@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Look\Common\Value\Slug\Contract;
-
-use Look\Common\Exception\InvalidValueException;
+namespace Look\Common\Value\Slug;
 
 interface SlugInterface
 {

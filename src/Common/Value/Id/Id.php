@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Look\Common\Value\Id;
 
 use Look\Common\Exception\InvalidValueException;
-use Look\Common\Value\Id\Contract\IdInterface;
 
 class Id implements IdInterface
 {

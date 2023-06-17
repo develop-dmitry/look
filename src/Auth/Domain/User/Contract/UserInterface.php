@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Look\Auth\Domain\User\Contract;
 
 use Look\Auth\Domain\User\Value\TelegramToken;
-use Look\Common\Value\Id\Contract\IdInterface;
+use Look\Common\Value\Id\IdInterface;
 
 interface UserInterface
 {

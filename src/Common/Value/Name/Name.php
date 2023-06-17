@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Look\Common\Value\Name;
 
 use Look\Common\Exception\InvalidValueException;
-use Look\Common\Value\Name\Contract\NameInterface;
 
 class Name implements NameInterface
 {

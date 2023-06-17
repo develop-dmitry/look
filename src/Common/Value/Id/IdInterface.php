@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Look\Common\Value\Id\Contract;
+namespace Look\Common\Value\Id;
 
 interface IdInterface
 {

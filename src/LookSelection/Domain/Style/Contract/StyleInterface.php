@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\Style\Contract;
 
-use Look\Common\Value\Name\Contract\NameInterface;
-use Look\Common\Value\Slug\Contract\SlugInterface;
+use Look\Common\Value\Name\NameInterface;
+use Look\Common\Value\Slug\SlugInterface;
 
 interface StyleInterface
 {

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Unit\Common\Value;
 
 use Look\Common\Exception\InvalidValueException;
-use Look\Common\Value\Photo\Contract\PhotoInterface;
 use Look\Common\Value\Photo\Photo as PhotoEntity;
+use Look\Common\Value\Photo\PhotoInterface;
 use Tests\TestCase;
 
 class PhotoTest extends TestCase
