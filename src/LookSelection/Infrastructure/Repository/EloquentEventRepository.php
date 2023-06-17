@@ -10,6 +10,7 @@ use Look\Common\Value\Name\Name;
 use Look\Common\Value\Slug\Slug;
 use Look\LookSelection\Domain\Event\Contract\EventRepository;
 use Look\LookSelection\Domain\Event\Event;
+use Look\LookSelection\Domain\Event\Exception\EventNotFoundException;
 use Psr\Log\LoggerInterface;
 
 class EloquentEventRepository implements EventRepository
@@ -36,6 +37,26 @@ class EloquentEventRepository implements EventRepository
         });
 
         return $result;
+    }
+
+    public function getById(int $id): Event
+    {
+        $model = EventModel::find($id);
+
+        if (!$model) {
+            throw new EventNotFoundException("Event with id $id not found");
+        }
+
+        try {
+            return $this->makeEntity($model);
+        } catch (InvalidValueException $exception) {
+            $this->logger->error('Invalid event in database', [
+                'event' => $model->toArray(),
+                'exception' => $exception->getMessage()
+            ]);
+
+            throw new EventNotFoundException($exception->getMessage());
+        }
     }
 
     /**

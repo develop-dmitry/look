@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Look\LookSelection\Domain\Look\Contract;
 
-use Look\LookSelection\Domain\Event\Contract\Event;
 use Look\LookSelection\Domain\Look\Exception\LookNotFoundException;
-use Look\LookSelection\Domain\Weather\Contract\Weather;
 
 interface LookRepository
 {
