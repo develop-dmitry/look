@@ -8,7 +8,7 @@ use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginRequest;
 use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginResponse;
 use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
 
-interface MessengerLogin
+interface MessengerLoginInterface
 {
     /**
      * @param MessengerLoginRequest $request

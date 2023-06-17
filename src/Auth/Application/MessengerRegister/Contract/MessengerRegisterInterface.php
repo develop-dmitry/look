@@ -9,7 +9,7 @@ use Look\Auth\Application\MessengerRegister\DTO\MessengerRegisterResponse;
 use Look\Auth\Application\MessengerRegister\Exception\UserAlreadyExistsException;
 use Look\Auth\Domain\User\Exception\UserWasNotCreateException;
 
-interface MessengerRegister
+interface MessengerRegisterInterface
 {
     /**
      * @param MessengerRegisterRequest $request

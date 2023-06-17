@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Look\Auth\Application\MessengerLogin;
 
-use Look\Auth\Application\MessengerLogin\Contract\MessengerLogin as MessengerLoginContract;
+use Look\Auth\Application\MessengerLogin\Contract\MessengerLoginInterface as MessengerLoginContract;
 use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginRequest;
 use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginResponse;
-use Look\Auth\Domain\User\Contract\UserRepository;
+use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
 use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
 
 class TelegramLoginUseCase implements MessengerLoginContract
 {
     public function __construct(
-        protected UserRepository $userRepository
+        protected UserRepositoryInterface $userRepository
     ) {
     }
 

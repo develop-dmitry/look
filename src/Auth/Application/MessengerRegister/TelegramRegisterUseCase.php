@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 namespace Look\Auth\Application\MessengerRegister;
 
-use Look\Auth\Application\MessengerRegister\Contract\MessengerRegister;
+use Look\Auth\Application\MessengerRegister\Contract\MessengerRegisterInterface;
 use Look\Auth\Application\MessengerRegister\DTO\MessengerRegisterRequest;
 use Look\Auth\Application\MessengerRegister\DTO\MessengerRegisterResponse;
 use Look\Auth\Application\MessengerRegister\Exception\UserAlreadyExistsException;
-use Look\Auth\Domain\User\Contract\UserRepository;
+use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
 use Look\Auth\Domain\User\Entity\User;
-use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
 use Look\Auth\Domain\User\Exception\UserWasNotCreateException;
 use Look\Auth\Domain\User\Value\TelegramToken;
 use Look\Common\Exception\InvalidValueException;
 
-class TelegramRegisterUseCase implements MessengerRegister
+class TelegramRegisterUseCase implements MessengerRegisterInterface
 {
     public function __construct(
-        protected UserRepository $userRepository
+        protected UserRepositoryInterface $userRepository
     ) {
     }
 

@@ -7,21 +7,21 @@ namespace Look\Auth\Domain\User\Contract;
 use Look\Auth\Domain\User\Exception\UserWasNotCreateException;
 use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
 
-interface UserRepository
+interface UserRepositoryInterface
 {
     /**
      * @param int $telegramToken
-     * @return User
+     * @return UserInterface
      * @throws UserDoesNotExistsException
      */
-    public function getUserByTelegramToken(int $telegramToken): User;
+    public function getUserByTelegramToken(int $telegramToken): UserInterface;
 
     /**
-     * @param User $user
+     * @param UserInterface $user
      * @return void
      * @throws UserWasNotCreateException
      */
-    public function createUser(User $user): void;
+    public function createUser(UserInterface $user): void;
 
     /**
      * @param int $telegramToken

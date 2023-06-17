@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Look\Auth\Application\MessengerRegister\DTO\MessengerRegisterRequest;
 use Look\Auth\Application\MessengerRegister\Exception\UserAlreadyExistsException;
 use Look\Auth\Application\MessengerRegister\TelegramRegisterUseCase;
-use Look\Auth\Domain\User\Contract\UserRepository;
+use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
 use Look\Auth\Infrastructure\Repository\EloquentUserRepository;
 use Tests\TestCase;
 use App\Models\User;
@@ -17,7 +17,7 @@ class TelegramMessengerRegisterTest extends TestCase
 {
     use DatabaseTransactions;
 
-    protected UserRepository $userRepository;
+    protected UserRepositoryInterface $userRepository;
 
     protected User $existsUser;
 

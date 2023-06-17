@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Unit\Auth\Domain;
 
 use Look\Auth\Domain\User\Entity\User;
-use Look\Auth\Domain\User\Value\Id;
 use Look\Auth\Domain\User\Value\TelegramToken;
+use Look\Common\Value\Id\Id;
 use Tests\TestCase;
 
 class UserTest extends TestCase

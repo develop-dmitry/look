@@ -6,11 +6,11 @@ namespace Tests\Unit\Auth\Application;
 
 use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginRequest;
 use Look\Auth\Application\MessengerLogin\TelegramLoginUseCase;
-use Look\Auth\Domain\User\Contract\UserRepository;
+use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
 use Look\Auth\Domain\User\Entity\User;
 use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
-use Look\Auth\Domain\User\Value\Id;
 use Look\Auth\Domain\User\Value\TelegramToken;
+use Look\Common\Value\Id\Id;
 use Tests\TestCase;
 
 class TelegramMessengerLoginTest extends TestCase
@@ -26,7 +26,7 @@ class TelegramMessengerLoginTest extends TestCase
 
     public function testLoginWhenUserDoesNotExists(): void
     {
-        $userRepository = $this->getMockBuilder(UserRepository::class)->getMock();
+        $userRepository = $this->getMockBuilder(UserRepositoryInterface::class)->getMock();
         $userRepository
             ->method('getUserByTelegramToken')
             ->willThrowException(new UserDoesNotExistsException());
@@ -39,7 +39,7 @@ class TelegramMessengerLoginTest extends TestCase
 
     public function testLoginWhenUserExists(): void
     {
-        $userRepository = $this->getMockBuilder(UserRepository::class)->getMock();
+        $userRepository = $this->getMockBuilder(UserRepositoryInterface::class)->getMock();
         $userRepository
             ->method('getUserByTelegramToken')
             ->willReturn($this->user);

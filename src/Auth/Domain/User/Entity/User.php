@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Look\Auth\Domain\User\Entity;
 
-use Look\Auth\Domain\User\Contract\User as UserContract;
-use Look\Auth\Domain\User\Value\Id;
+use Look\Auth\Domain\User\Contract\UserInterface;
 use Look\Auth\Domain\User\Value\TelegramToken;
+use Look\Common\Value\Id\Contract\Id;
 
-class User implements UserContract
+class User implements UserInterface
 {
     public function __construct(
         protected ?Id $id,
@@ -26,7 +26,7 @@ class User implements UserContract
         return $this->telegramToken;
     }
 
-    public function setId(Id $id): UserContract
+    public function setId(Id $id): UserInterface
     {
         $this->id = $id;
         return $this;

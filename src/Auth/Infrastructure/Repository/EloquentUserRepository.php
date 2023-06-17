@@ -6,24 +6,24 @@ namespace Look\Auth\Infrastructure\Repository;
 
 use Look\Auth\Domain\User\Exception\UserWasNotCreateException;
 use Look\Common\Exception\InvalidValueException;
-use Look\Auth\Domain\User\Contract\User;
-use Look\Auth\Domain\User\Contract\UserRepository;
+use Look\Auth\Domain\User\Contract\UserInterface;
+use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
 use App\Models\User as UserModel;
 use Look\Auth\Domain\User\Entity\User as UserEntity;
 use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
-use Look\Auth\Domain\User\Value\Id;
 use Look\Auth\Domain\User\Value\TelegramToken;
+use Look\Common\Value\Id\Id;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
-class EloquentUserRepository implements UserRepository
+class EloquentUserRepository implements UserRepositoryInterface
 {
     public function __construct(
         protected LoggerInterface $logger
     ) {
     }
 
-    public function getUserByTelegramToken(int $telegramToken): User
+    public function getUserByTelegramToken(int $telegramToken): UserInterface
     {
         $user = UserModel::where('telegram_token', $telegramToken)
             ->select(['id', 'telegram_token'])
@@ -41,7 +41,7 @@ class EloquentUserRepository implements UserRepository
         }
     }
 
-    public function createUser(User $user): void
+    public function createUser(UserInterface $user): void
     {
         try {
             $userModel = new UserModel(['telegram_token' => $user->getTelegramToken()?->getValue()]);
@@ -62,7 +62,7 @@ class EloquentUserRepository implements UserRepository
     /**
      * @throws InvalidValueException
      */
-    protected function makeUser(UserModel $user): User
+    protected function makeUser(UserModel $user): UserInterface
     {
         return new UserEntity(
             $user->id ? new Id($user->id) : null,
