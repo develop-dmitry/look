@@ -15,12 +15,16 @@ use Look\Common\Messenger\Base\Request\CallbackQuery\CallbackQuery;
 use Look\Common\Messenger\Base\Request\Geolocation\Geolocation;
 use Look\Common\Messenger\Base\Request\Request;
 use Look\Common\Messenger\Base\Request\RequestInterface;
+use Look\Common\Messenger\Base\User\Contract\UserInterface;
 use Look\Common\Messenger\Base\User\Contract\UserRepositoryInterface;
+use Look\Common\Messenger\Base\User\User;
 use Look\Common\Messenger\Base\Visual\Button\ButtonInterface;
 use Look\Common\Messenger\Base\Visual\Keyboard\InlineKeyboard\InlineKeyboard;
 use Look\Common\Messenger\Base\Visual\Keyboard\KeyboardInterface;
 use Look\Common\Messenger\Base\Visual\Keyboard\KeyboardType;
 use Look\Common\Messenger\Base\Visual\VisualInterface;
+use Look\Common\Messenger\Telegram\Value\TelegramToken;
+use Look\Common\Value\Id\Id;
 use Psr\Log\LoggerInterface;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\RunningMode\Webhook;
@@ -82,6 +86,14 @@ class TelegramMessenger extends AbstractMessenger
         }
 
         return $this->bot->sendMessage($message, reply_markup: $keyboard);
+    }
+
+    protected function makeUser(int $userId, int|string $messengerToken): ?UserInterface
+    {
+        return new User(
+            new Id($userId),
+            new TelegramToken($messengerToken)
+        );
     }
 
     protected function initContext(): void

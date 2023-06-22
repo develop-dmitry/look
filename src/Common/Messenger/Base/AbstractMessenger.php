@@ -113,13 +113,7 @@ abstract class AbstractMessenger implements MessengerInterface
     /**
      * @throws InvalidValueException
      */
-    protected function makeUser(int $userId, int|string $messengerToken): ?UserInterface
-    {
-        return new User(
-            new Id($userId),
-            new TelegramToken($messengerToken)
-        );
-    }
+    abstract protected function makeUser(int $userId, int|string $messengerToken): ?UserInterface;
 
     /**
      * @throws UserDoesNotExistsException
