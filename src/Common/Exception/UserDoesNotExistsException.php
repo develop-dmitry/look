@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Look\Auth\Domain\User\Exception;
+namespace Look\Common\Exception;
 
 use Exception;
 

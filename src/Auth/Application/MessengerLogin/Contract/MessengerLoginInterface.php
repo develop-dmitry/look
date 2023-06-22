@@ -6,7 +6,7 @@ namespace Look\Auth\Application\MessengerLogin\Contract;
 
 use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginRequest;
 use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginResponse;
-use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
+use Look\Common\Exception\UserDoesNotExistsException;
 
 interface MessengerLoginInterface
 {

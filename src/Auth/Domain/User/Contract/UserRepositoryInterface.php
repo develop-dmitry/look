@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Look\Auth\Domain\User\Contract;
 
 use Look\Auth\Domain\User\Exception\UserWasNotCreateException;
-use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
+use Look\Common\Exception\UserDoesNotExistsException;
 
 interface UserRepositoryInterface
 {

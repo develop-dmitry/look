@@ -7,9 +7,9 @@ namespace Tests\Unit\Auth\Application;
 use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginRequest;
 use Look\Auth\Application\MessengerLogin\TelegramLoginUseCase;
 use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
-use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
 use Look\Auth\Domain\User\User;
 use Look\Auth\Domain\User\Value\TelegramToken;
+use Look\Common\Exception\UserDoesNotExistsException;
 use Look\Common\Value\Id\Id;
 use Tests\TestCase;
 

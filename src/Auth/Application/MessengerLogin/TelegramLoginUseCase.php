@@ -8,7 +8,7 @@ use Look\Auth\Application\MessengerLogin\Contract\MessengerLoginInterface as Mes
 use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginRequest;
 use Look\Auth\Application\MessengerLogin\DTO\MessengerLoginResponse;
 use Look\Auth\Domain\User\Contract\UserRepositoryInterface;
-use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
+use Look\Common\Exception\UserDoesNotExistsException;
 
 class TelegramLoginUseCase implements MessengerLoginContract
 {

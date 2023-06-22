@@ -6,11 +6,11 @@ namespace Tests\Unit\Auth\Infrastructure;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Look\Auth\Domain\User\Exception\UserDoesNotExistsException;
 use Look\Auth\Domain\User\Exception\UserWasNotCreateException;
 use Look\Auth\Domain\User\User as UserEntity;
 use Look\Auth\Domain\User\Value\TelegramToken;
 use Look\Auth\Infrastructure\Repository\EloquentUserRepository;
+use Look\Common\Exception\UserDoesNotExistsException;
 use Psr\Log\LoggerInterface;
 use Tests\TestCase;
 
